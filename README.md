@@ -1,3 +1,5 @@
+Czech Technical University thesis template
+==========================================
 
 You stepped in the repo of the ctuthesis -- LaTeX template for theses at the
 Czech Technical University in Prague. The repo contains the class files and
@@ -22,4 +24,19 @@ ctutest-2.tex
 ctutest-zadani.pdf
 ctutest.bib
 ctutest.* (auxiliary files)
+
+Template usage 
+=====
+
+Ubuntu 14.04 and above with Texmaker
+----------------------
+
+You need to install several texlive packages
+
+sudo apt-get install texlive-humanities
+sudo apt-get install texlive-fonts-recommended
+sudo apt-get install texlive-fonts-extra
+
+The default PDFLaTex configuration from Texmaker is used for typesetting. 
+
 
