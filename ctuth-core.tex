@@ -2,7 +2,7 @@
 %!TEX ROOT = ctutest.tex
 
 \ProvidesExplFile{ctuth-core.tex}%
-	{2015/03/24}{0.1 t1503242320}%MY TIMESTAMP HERE {0.1}
+	{2016/06/15}{0.1 t1606152353}%MY TIMESTAMP HERE {0.1}
 	{"Core"\space part\space of\space the\space class\space ctuthesis}
 
 
@@ -15,6 +15,7 @@
 \cs_generate_variant:Nn \keys_set:nn { nx }
 \cs_generate_variant:Nn \tl_if_eq:nnTF { xn }
 \cs_generate_variant:Nn \seq_gconcat:NNN { cc }
+\cs_generate_variant:Nn \str_if_eq:nnTF { xn }
 
 \skip_new:N \g_ctuthesis_tempa_skip
 
@@ -50,7 +51,7 @@
 \seq_new:N \g_ctuthesis_keys_nop_seq
 \seq_new:N \g_ctuthesis_keys_nopost_seq
 % Add the clist #2 into seq #1
-\cs_new:Nn \ctuthesis_keys_add_no:nn {
+\cs_new_protected:Nn \ctuthesis_keys_add_no:nn {
 	\group_begin:
 	\seq_set_from_clist:Nn \l_temp_ctuthesis_a_seq { #2 }
 	\seq_gconcat:ccN { g_ctuthesis_keys_#1_seq } { g_ctuthesis_keys_#1_seq } \l_temp_ctuthesis_a_seq
@@ -75,7 +76,7 @@
 }
 
 % Disables keys marked '#1' (either 'nop' or 'nopost')
-\cs_new:Nn \ctuthesis_disable_keys:n {
+\cs_new_protected:Nn \ctuthesis_disable_keys:n {
 	\seq_map_inline:cn { g_ctuthesis_keys_#1_seq } {
 		\keys_define:nn { ctuthesis } {
 			##1 .code:n = \msg_error:nnx { ctuthesis } { keys-#1 } { ##1 },
@@ -88,8 +89,8 @@
 \seq_new:N \g_ctuthesis_languages_seq
 \keys_define:nn { ctuthesis } {
 	
-	% Allowed fontsizes are 10pt, 11pt, 12pt, defaulting in 11pt (see above)
-	fontsize .choices:nn = { 10pt, 11pt, 12pt } { \tl_gset_eq:NN \g_ctuthesis_fontsize_tl \l_keys_choice_tl },
+	% Only 11pt fontsize is allowed
+	fontsize .choices:nn = { 11pt } { \tl_gset_eq:NN \g_ctuthesis_fontsize_tl \l_keys_choice_tl },
 	
 	% Oneside option
 	oneside .bool_gset:c = { g_ctuthesis_switch_oneside_bool },
@@ -131,7 +132,7 @@
 \ctuthesis_keys_add_no:nn { nopost } { monochrome, savetoner, pkg-listings }
 
 % Switches defaulting to true
-\tl_map_inline:nn { {front-list-of-tables}{front-list-of-figures}{pkg-hyperref}{pkg-makeidx} } {
+\tl_map_inline:nn { {front-list-of-tables}{front-list-of-figures}{pkg-hyperref}{pkg-makeidx}{pkg-amsthm} } {
 	\keys_define:nn { ctuthesis } {
 		#1 .bool_gset:c = { g_ctuthesis_switch_#1_bool },
 		#1 .initial:n = { true },
@@ -139,8 +140,8 @@
 }
 \ctuthesis_keys_add_no:nn { nopost } { pkg-hyperref, pkg-makeidx }
 
-% We allow keys 10pt, 11pt and 12pt along with the key fontsize
-\tl_map_inline:nn { {10pt}{11pt}{12pt} } {
+% We allow the key 11pt along with the key fontsize
+\tl_map_inline:nn { {11pt} } {
 	\keys_define:nn { ctuthesis } {
 		#1 .meta:n = { fontsize = #1 },
 	}
@@ -148,7 +149,7 @@
 }
 
 % Basic fields that are not language-dependent
-\tl_map_inline:nn { {author}{supervisor}{supervisor-address}{day}{month}{year}
+\tl_map_inline:nn { {author}{supervisor}{supervisor-specialist}{supervisor-address}{day}{month}{year}
 	  {facultynum}{specification-file}{preprint} } {
 	\keys_define:nn { ctuthesis } {
 		#1 .tl_gset:c = { g_ctuthesis_field_#1_tl },
@@ -169,7 +170,7 @@
 		\keys_define:nn { ctuthesis } {
 			##1 / #1 .code:n =
 				\tl_gset:cn { g_ctuthesis_field_##1_tl } { #1 }
-				\seq_gput_right:Nn \g_ctuthesis_languages_seq { #1 }
+				\seq_gput_right:Nn \g_ctuthesis_languages_seq { #1 },
 		}
 	}
 	% The abstract is now language-dependent
@@ -189,6 +190,10 @@
 \NewEnviron { declaration } { \tl_gset:cV { g_ctuthesis_field_declaration_tl } \BODY }
 \tl_new:c { g_ctuthesis_field_declaration_tl }
 
+\tl_gset:Nn \g_ctuthesis_ctulstbg_tl { ctulstbg }
+\keys_define:nn { ctuthesis } {
+		ctulstbg .tl_gset:N = \g_ctuthesis_ctulstbg_tl
+}
 
 
 
@@ -197,7 +202,7 @@
 
 
 % A macro called after every \keys_set{ctuthesis}{...}
-\cs_new:Nn \ctuthesis_ctusetup_trigger: {
+\cs_new_protected:Nn \ctuthesis_ctusetup_trigger: {
 	% Remove duplicates from the language list
 	\seq_gremove_duplicates:N \g_ctuthesis_languages_seq
 	% Set up titlelanguage as mainlanguage if the latter is defined and the former is not
@@ -268,24 +273,45 @@
 	}
 
 % `\ctufield` supports the context language specifier as an optional argument
-\NewDocumentCommand \ctufield { >{\TrimSpaces}o >{\TrimSpaces}m } {
-	\IfValueTF { #1 } {
-%			\ctuthesis_field_exists:nF { #1 language } { \msg_error:nnx { ctuthesis } { unknown-field } { #1 } }
-%			\ctuthesis_field_use:n { #2_\ctuthesis_field_use:n { #1 language } }
-			\ctuthesis_field_use:nn { #1 } { #2 }
+\NewDocumentCommand \ctufield { s >{\TrimSpaces}o >{\TrimSpaces}m } {
+	\IfBooleanTF { #1 } {
+		\IfValueTF { #2 } {
+				\ctuthesis_field_use_default:nnn { #2 } { #3 } { }
+		} {
+				\ctuthesis_field_use_default:nn { #3 } { }
+		}
 	} {
-			\ctuthesis_field_use:n { #2 }
+		\IfValueTF { #2 } {
+				\ctuthesis_field_use:nn { #2 } { #3 }
+		} {
+				\ctuthesis_field_use:n { #3 }
+		}
 	}
 }
 
-\cs_new:Nn \ctuthesis_field_use:n {
+% Four variants of the "field use": expandable (with default value)/non-expandable (with error message) and language-independent/dependent
+% #1->field, #2->default value
+\cs_new:Nn \ctuthesis_field_use_default:nn {
+	\cs_if_exist_use:cF { g_ctuthesis_field_#1_tl } { #2 }
+}
+
+% #1->language, #2->field, #3->default value
+\cs_new:Nn \ctuthesis_field_use_default:nnn {
+	\ctuthesis_field_use_default:nn
+		{ #2_\ctuthesis_field_use_default:nn { #1 language } { nolanguage } }
+		{ #3 }
+}
+
+% #1->field
+\cs_new_protected:Nn \ctuthesis_field_use:n {
 	\cs_if_exist_use:cF { g_ctuthesis_field_#1_tl } { \msg_error:nnx { ctuthesis } { unknown-field } { #1 } }
 }
 
-% This one takes two arguments: the language and the field name
-\cs_new:Nn \ctuthesis_field_use:nn {
-	\cs_if_exist:cF { g_ctuthesis_field_#1language_tl } { \msg_error:nnx { ctuthesis } { unknown-field } { #1 } }
-	\ctuthesis_field_use:n { #2_\ctuthesis_field_use:n { #1 language } }
+% #1->language, #2->field
+\cs_new_protected:Nn \ctuthesis_field_use:nn {
+	\cs_if_exist:cTF { g_ctuthesis_field_#1language_tl }
+		{ \ctuthesis_field_use:n { #2_\ctuthesis_field_use_default:nn { #1 language } { } } }
+		{ \msg_error:nnx { ctuthesis } { unknown-field } { #1 language } }
 }
 
 % Theme, template and field hadling - existance conditionals
@@ -367,9 +393,9 @@
 % Create \ctuverlog which contains the automatically updated timestamp of the file.
 % It can be used for instance in \ctusetup{preprint = \ctuverlog} in order to show
 % the timestamp on every page.
-\cs_new:Npx \ctuverlog {
+\cs_new_protected:Npx \ctuverlog {
 	ctuthesis ~ \use_ii:nn
-	{2015/03/24}{ t1503242320}%MY TIMESTAMP HERE {}	
+	{2016/06/15}{ t1606152353}%MY TIMESTAMP HERE {}	
 }
 
 

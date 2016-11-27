@@ -3,27 +3,27 @@
 % arara: bibtex
 
 % The class takes all the key=value arguments that \ctusetup does,
-% of them, just the fontsize has to be specified immediately;
-% 11pt is the default and we recommend keeping that, still we support
-% 10pt and 12pt as well.
-\documentclass[twoside,11pt]{ctuthesis}
+% and a couple more: draft and oneside
+\documentclass[twoside]{ctuthesis}
 
 \ctusetup{
 	preprint = \ctuverlog,
-	mainlanguage = english,
-	titlelanguage = english,
-	otherlanguages = {slovak},
+%	mainlanguage = english,
+%	titlelanguage = czech,
+	mainlanguage = czech,
+	otherlanguages = {slovak,english},
 	title-czech = {Moje bakalářka se strašně, ale hrozně dlouhým předlouhým názvem},
 	title-english = {My Favourite Thesis; Just the Title is Soooooooo Looooong},
 	subtitle-czech = {Cesta do tajů kdovíčeho},
 	subtitle-english = {Journey to the who-knows-what wondeland},
-	xdoctype = B,
-	xfaculty = F4,
+	doctype = B,
+	faculty = F4,
 	department-czech = {Katedra matematiky},
 	department-english = {Department of Mathematics},
 	author = {Tomáš Hejda},
 	supervisor = {Prof. Krutoš Spravedlivý},
 	supervisor-address = {Ústav X, \\ Uliční 5, \\ Praha 99},
+	supervisor-specialist = {John Doe},
 	fieldofstudy-english = {Mathematical Engineering},
 	subfieldofstudy-english = {Mathematical Modelling},
 	fieldofstudy-czech = {Matematcké inženýrství},
@@ -42,6 +42,11 @@
 }
 
 \ctuprocess
+
+\addto\ctucaptionsczech{%
+	\def\supervisorname{Vedoucí}%
+	\def\subfieldofstudyname{Studijní program}%
+}
 
 \ctutemplateset{maketitle twocolumn default}{
 	\begin{twocolumnfrontmatterpage}
@@ -70,6 +75,8 @@
 \theoremstyle{note}
 \newtheorem*{remark*}{Remark}
 \newtheorem{remark}[theorem]{Remark}
+
+\setlength{\parskip}{5ex plus 0.2ex minus 0.2ex}
 
 % Abstract in Czech
 \begin{abstract-czech}
@@ -162,6 +169,9 @@ foo2 & bar2
 \subsection{Yes, table of contents}
 
 \begin{theorem}\begin{enumerate} \item Bla \item Blo \end{enumerate} \end{theorem}
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis interdum facilisis urna, at tincidunt leo consectetur non. Maecenas bibendum mi vitae libero pharetra, ac ullamcorper nulla pellentesque. Sed sit amet massa nunc. Aenean placerat a est sodales sagittis. Quisque purus nibh, auctor ut consectetur at, suscipit non erat. Donec condimentum porttitor risus, vitae fringilla lectus tincidunt nec. Nulla leo quam, commodo eu ornare non, iaculis sed nulla. Duis gravida lacus quis purus sodales, vitae malesuada justo ultricies. Vestibulum nisl nulla, commodo non pellentesque a, fringilla a risus. Ut quis magna nulla. Mauris vitae ultricies ante, in consectetur justo. 
 
 \medskip
 

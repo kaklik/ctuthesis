@@ -2,7 +2,7 @@
 %!TEX ROOT = ctutest.tex
 
 \ProvidesExplFile{ctuth-pkg.tex}%
-	{2015/03/24}{0.1 t1503242320}%MY TIMESTAMP HERE {0.1}
+	{2016/06/15}{0.1 t1606152353}%MY TIMESTAMP HERE {0.1}
 	{"Packages"\space part\space of\space the\space class\space ctuthesis}
 
 % A lot of the code here is not latex3, but rather the good'ol latex2e code. The reason is that
@@ -25,7 +25,9 @@
 
 % Used for setting title, main or second language
 \NewDocumentCommand \selectctulanguage { m } {
-	\exp_args:Nx \selectlanguage { \ctuthesis_field_use:n { #1 language } }
+	\ctuthesis_field_exists:nTF { #1 language }
+		{ \exp_args:Nx \selectlanguage { \ctuthesis_field_use_default:nn { #1 language } { } } }
+		{ \msg_error:nnx { ctuthesis } { unknown-field } { #1 language } }
 }
 
 
@@ -41,7 +43,7 @@
 % Define the colors, first in monochrome, then in colour.
 \ctuifswitch { savetoner } {
 	% savetoner: true
-	\definecolor { ctublue } { RGB } { 0, 122, 195 }
+	\definecolor { ctublue } { CMYK } { 100, 43, 0, 0 }
 	\definecolor { ctulightblue } { RGB }{ 172, 214, 238 }
 	\colorlet    { ctubluetext } { ctublue }
 	\colorlet    { ctubluerule } { ctulightblue }
@@ -72,8 +74,8 @@
 		\definecolor { ctuorange } { gray } { 0.9 }
 	} {
 		% savetoner: false, monochrome: false
-		\definecolor { ctublue } { RGB } { 0, 122, 195 }
-		\definecolor { ctulightblue } { RGB }{ 172, 214, 238 }
+		\definecolor { ctublue } { cmyk } { 1, .43, 0, 0 }
+		\definecolor { ctulightblue } { cmyk }{ .3, .13, 0, 0 }
 		\colorlet    { ctubluetext } { ctublue }
 		\colorlet    { ctubluerule } { ctublue }
 		\colorlet    { ctubluedarkbg } { ctublue }
@@ -83,7 +85,7 @@
 		\colorlet    { ctublueitemi } { ctublue }
 		\colorlet    { ctublueitemii } { ctulightblue }
 		\colorlet    { ctugray } { gray }
-		\definecolor { ctuorange } { Hsb } { 22, 0.5, 1 }
+		\definecolor { ctuorange } { cmyk } { 0, .51, 1, 0 }
 	}
 }
 
@@ -100,7 +102,7 @@
 
 % This is a "ToC macro" for the twocolumn context
 % Arguments: 1) suffix, 2) ToC name
-\cs_new:Nn \ctuthesis_maketoc_twocol:nn {
+\cs_new_protected:Nn \ctuthesis_maketoc_twocol:nn {
 	% Start the chapter
 	\chapter* { #2 }
 	% locally make rugged pages
@@ -226,7 +228,7 @@
 \dim_const:Nn \g_ctuthesis_geometry_innermargin_dim { 1in + \the\oddsidemargin }
 
 % The frontmatter pages are a bit wider
-\cs_new:Nn \ctuthesis_geometry_title: {
+\cs_new_protected:Nn \ctuthesis_geometry_title: {
 	\newgeometry {
 		% Use the stored innermargin value
 		inner = \g_ctuthesis_geometry_innermargin_dim ,
@@ -240,7 +242,7 @@
 	}
 }
 
-\cs_new:Nn \ctuthesis_geometry_plain: {
+\cs_new_protected:Nn \ctuthesis_geometry_plain: {
 	\newgeometry {
 		% Use the stored innermargin value
 		inner = \dim_use:N \g_ctuthesis_geometry_innermargin_dim ,
@@ -291,6 +293,27 @@
 	\end{tabular}\hspace*{-10pt}
 	\par
 }
+\long\def\ctu@title@boxify@x#1#2#3#4#5{
+	\sffamily
+	\bfseries
+	\setbox\ctu@title@box\vbox{\parskip0pt\hsize\dimexpr\linewidth-\ctu@title@rulewidth-\ctu@title@rulesep\relax
+		\vskip#1
+		\raggedright
+		#4
+		\vskip#2
+	}
+	#5
+	\noindent\begin{tabular}{@{}l@{\hspace*{\ctu@title@rulesep}}l@{}}
+		\color{ctubluerule}
+		\rule
+			[\dimexpr\ht\ctu@title@box-#3-#1]
+			{\ctu@title@rulewidth}
+			{\dimexpr#1+#3}
+	&
+		\box\ctu@title@box
+	\end{tabular}\hspace*{-10pt}
+	\par
+}
 % the part style, very simply organized
 \def\ttlh@ctupt#1#2#3#4#5#6#7#8{
 	\bool_gset_true:N \g_ctuthesis_title_haspart_bool
@@ -317,15 +340,15 @@
 \def\ttlh@ctus#1#2#3#4#5#6#7#8{
 	\ifttl@label\else\sectionstarmark{#8}\fi	
 	\ifttl@label\else\addcontentsline{toc}{section}{#8}\fi
-	\ctu@title@boxify{#5}{#3}{ #1{\ifttl@label#2\fi\strut\color{ctubluetext}#8\strut} }{}
+	\ctu@title@boxify@x{#5}{0pt}{#3}{ #1{\ifttl@label#2\fi\strut\color{ctubluetext}#8\strut} }{}
 }
 \def\ttlh@ctuss#1#2#3#4#5#6#7#8{
 	\ifttl@label\else\addcontentsline{toc}{subsection}{#8}\fi
-	\ctu@title@boxify{#5}{#3}{ #1{\ifttl@label#2\fi\strut\color{ctubluetext}#8\strut} }{}
+	\ctu@title@boxify@x{#5}{0pt}{#3}{ #1{\ifttl@label#2\fi\strut\color{ctubluetext}#8\strut} }{}
 }
 \def\ttlh@ctusss#1#2#3#4#5#6#7#8{
 	\ifttl@label\else\addcontentsline{toc}{subsubsection}{#8}\fi
-	\ctu@title@boxify{#5}{#3}{ #1{\ifttl@label#2\fi\strut\color{ctubluetext}#8\strut} }{}
+	\ctu@title@boxify@x{#5}{0pt}{#3}{ #1{\ifttl@label#2\fi\strut\color{ctubluetext}#8\strut} }{}
 }
 % Modified \ttl@page@ii to use \cleardoublepage instead of some idiocy
 \def\ttl@page@ii#1#2#3#4#5#6#7{%
@@ -359,17 +382,17 @@
   \ignorespaces}
 % Part title setting
 \bool_new:N \g_ctuthesis_title_haspart_bool
-\titleformat \part [ctupt] {\Huge} {{\huge\partname\ }\thepart} {0pt} {\huge} [0.6\textheight]
+\titleformat \part [ctupt] {\Huge} {{\huge\partname\nobreakspace}\thepart} {0pt} {\huge} [0.6\textheight]
 \titlespacing* \part {0pt} {0pt} {0pt}
 % Tweak into titlesec to make part number contain \numberline. They did not include it for some reason.
 \def\ttl@tocpart{\def\ttl@a{\protect\numberline{\thepart}}}
 % Chapter title setting
-\titleformat \chapter [ctuch] {\huge} {{\LARGE\chaptertitlename\ }\thechapter} {-0\dp\strutbox} {\LARGE} [50pt]
-\titlespacing* \chapter {0pt} {10pt} {15pt}
+\titleformat \chapter [ctuch] {\huge} {{\LARGE\chaptertitlename\ }\thechapter} {-0\dp\strutbox} {\LARGE} [40pt]
+\titlespacing* \chapter {0pt} {40pt} {15pt}
 % Section title setting
-\titleformat \section [ctus] {\Large} {\thesection\quad} {-0.9\dp\strutbox} {} [2pt]
-\titleformat \subsection [ctuss] {\large} {\thesubsection\quad} {-0.9\dp\strutbox} {} [1pt]
-\titleformat \subsubsection [ctusss] {\normalsize} {\thesubsubsection\quad} {-0.9\dp\strutbox} {} [1pt]
+\titleformat \section [ctus] {\Large} {\thesection\quad} {14pt} {} [2pt]
+\titleformat \subsection [ctuss] {\large} {\thesubsection\quad} {11pt} {} [0pt]
+\titleformat \subsubsection [ctusss] {\normalsize} {\thesubsubsection\quad} {10pt} {} [0pt]
 % Paragraph title setting: runin, with a dot.
 \cs_new:Nn \ctuthesis_title_adddot:n {#1\@addpunct.\ignorespaces}
 \titleformat \paragraph [runin] {\normalfont\normalsize\bfseries\sffamily} {\theparagraph} {1em} {\ctuthesis_title_adddot:n}
@@ -467,7 +490,7 @@
 	\leavevmode
 	\null
 	\nobreak
-	\def\numberline##1{Part~##1\\}%
+	\def\numberline##1{\partname \nobreakspace ##1\\}%
 	\sffamily \bfseries
 	#1
 	\par
@@ -580,7 +603,7 @@
 
 % The leaders macro for the fancyhead: nice little boxes,
 % the parameter #1 chooses one of the boxes above
-\cs_new:Nn \ctuthesis_fancy_leaders:n {
+\cs_new_protected:Nn \ctuthesis_fancy_leaders:n {
 	\hspace*{-1pt}
 	\leaders \box_use:c {g_ctuthesis_fancy_bluerule_#1_box} \hfill
 	\hspace*{-1pt}
@@ -589,7 +612,7 @@
 % This macro works as follows: The width of the material is actually zero. We use \hbox_overlap_left/right
 % to make the headers as wide as we wish, the direction is in #1. In #2 is the contents, and we suppose
 % that it contains \ctuthesis_fancy_leaders: and \left/rightmark in desired order; it's typeset gray sf it
-\cs_new:Nn \ctuthesis_fancy_xlap:nn {
+\cs_new_protected:Nn \ctuthesis_fancy_xlap:nn {
 	\color{ctugray} \sffamily\itshape
 	\leavevmode \use:c { hbox_overlap_#1:n } {
 		\hbox_to_wd:nn { \paperwidth - 1in - \evensidemargin + 1em } { #2 }
@@ -616,19 +639,15 @@
 \DeclareDocumentCommand \cleardoublepage { s } {
 	\clearpage
 	\if@twoside\ifodd\c@page\else
-		\IfBooleanTF { #1 } {
+%		\IfBooleanTF { #1 } {
 			% Starred variant: completely empty page
 			\leavevmode
 			\thispagestyle{empty}
-		} {
-			% Non-starred variant: include page number and three cute dots in the middle of the page
-			\hbox{}\vspace*{\fill}
-			\centerline { \prg_replicate:nn { 3 } { \box_use:N \g_ctuthesis_fancy_bluerule_c_box } }
-			\vspace*{\fill}
-			\hbox{}
-			% The spacial pagestyle for this page
+%		} {
+			% Non-starred variant: include page number
+			\leavevmode
 			\thispagestyle{cleardoublepage}
-		}
+%		}
 		\newpage
 		% In twocolumn, we need \newpage twice
 		\if@twocolumn\hbox{}\newpage\fi
@@ -700,15 +719,25 @@
 
 %%% LISTS
 
+% Temp box
+\box_new:N \g_ctuthesis_tempa_box
 % Macro used to generate the itemize labels
 % parameters 1:depth, 2: raise (without ex), 3: scale, 4:color
-\cs_new:Nn \ctuthesis_list_prepare_labelitem:nnnn {
+\cs_new_protected:Nn \ctuthesis_list_prepare_labelitem:nnnn {
 	% Each label stored in a box
 	\box_new:c { g_ctuthesis_list_label_#1_box }
+	% use the temp box to measure the symbol
+	\hbox_gset:Nn \g_ctuthesis_tempa_box {
+		\scalebox{#3}{\fontfamily{lmss}\bfseries\color{#4}.}
+	}
 	% The label is actually a shifted up, scaled, coloured lmss bf dot
 	\hbox_gset:cn { g_ctuthesis_list_label_#1_box } {
-		\box_move_up:nn { #2 ex } \hbox:n {
+		\box_move_up:nn { #2 ex } \hbox_to_wd:nn {
+			\box_ht:N \g_ctuthesis_tempa_box
+		} {
+			\hss
 			\scalebox{#3}{\fontfamily{lmss}\bfseries\color{#4}.}
+			\hss
 		}
 	}
 	\cs_set:cpn { labelitem #1 } { \box_use:c { g_ctuthesis_list_label_#1_box } }
@@ -722,7 +751,7 @@
 % Macro for making the box with lmss bf dot "." scaled to the size of \strutbox
 % #1 is the width of the box (relative to the width of the resulting dot) and
 % #2 is the color of the box
-\cs_new:Nn \ctuthesis_list_enumdot:nn {
+\cs_new_protected:Nn \ctuthesis_list_enumdot:nn {
 	\hbox_to_wd:nn { #1\ht\strutbox + #1\dp\strutbox } {
 		\hss
 		\raisebox{-\dp\strutbox}{
@@ -762,6 +791,8 @@
 \def\labelenumiii{{\normalfont(\theenumiii)}}
 \def\labelenumiv{{\normalfont(\theenumiv)}}
 
+\leftmargini22.2pt
+\labelsep6pt
 
 
 
@@ -771,36 +802,39 @@
 
 %%% MATH, THEOREMS
 
-\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{amsmath,amssymb,amsfonts}
 
-% Redefine standard styles: plain is slanted, definition is normal, note has an italic head (like proof)
-\newtheoremstyle{plain}{3pt plus 1pt}{3pt plus 1pt}{\slshape}{}{\bfseries\sffamily}{.}{.5em}{}
-\newtheoremstyle{plainit}{3pt plus 1pt}{3pt plus 1pt}{\slshape}{}{\bfseries\sffamily}{.}{.5em}{}
-\newtheoremstyle{definition}{3pt plus 1pt}{3pt plus 1pt}{}{}{\bfseries\sffamily}{.}{.5em}{}
-\newtheoremstyle{note}{3pt plus 1pt}{3pt plus 1pt}{}{}{\itshape}{.}{.5em}{}
+% Optional loading of amsthm
+\ctuthesis_if_switch:nT { pkg-amsthm } {
 
-% Default style: plain
-\theoremstyle{plain}
+	\usepackage{amsthm}
 
-% We redefine proof to include a more reasonable spacing above it.
-\DeclareDocumentEnvironment { proof } { O{\proofname} } {
-  \par
-  \pushQED{\qed}%
-  \normalfont \topsep0pt plus 1pt
-  \trivlist
-  \item[\hskip\labelsep
-        \itshape\color{ctubluetext!70!black}
-    #1\@addpunct{.}]\ignorespaces
-}{%
-  \popQED\endtrivlist\@endpefalse
-}
+	% Redefine standard styles: plain is slanted, definition is normal, note has an italic head (like proof)
+	\newtheoremstyle{plain}{3pt plus 1pt}{3pt plus 1pt}{\slshape}{}{\bfseries\sffamily}{.}{.5em}{}
+	\newtheoremstyle{plainit}{3pt plus 1pt}{3pt plus 1pt}{\slshape}{}{\bfseries\sffamily}{.}{.5em}{}
+	\newtheoremstyle{definition}{3pt plus 1pt}{3pt plus 1pt}{}{}{\bfseries\sffamily}{.}{.5em}{}
+	\newtheoremstyle{note}{3pt plus 1pt}{3pt plus 1pt}{}{}{\itshape}{.}{.5em}{}
 
-\cs_new_eq:NN \AMSqedbox \qedsymbol
+	% Default style: plain
+	\theoremstyle{plain}
+	
+	% We redefine proof to include a more reasonable spacing above it.
+	\DeclareDocumentEnvironment { proof } { O{\proofname} } {
+		\par
+		\pushQED{\qed}
+		\normalfont \topsep0pt plus 1pt
+		\trivlist
+		\item[
+			\hskip\labelsep
+		    \itshape
+			#1\@addpunct{.}
+		]
+		\ignorespaces
+	}{
+		\popQED\endtrivlist\@endpefalse
+	}
 
-\DeclareDocumentCommand \qedsymbol { } {
-	{ \color{ctubluetext!70!black} \AMSqedbox }
-}
-
+}	
 
 
 
@@ -855,12 +889,19 @@
 		columns = fullflexible,
 		keepspaces = true,
 		tabsize = 4,
-		frame = leftline,
+%		frame = leftline,
+%		framesep = 0pt,
+%		framexleftmargin = 3pt,
+%		framerule = 0.667pt,
+%		rulecolor = \color{ctubluerule},
+		frame = single,
 		framesep = 0pt,
-		framexleftmargin = 3pt,
-		framerule = 0.667pt,
-		rulecolor = \color{ctubluerule},
-		xrightmargin = -3pt,
+		framexleftmargin = 2pt,
+		framerule = 2pt,
+		rulecolor = \color{ctubluebg},
+		framexrightmargin = 2pt,
+		xleftmargin = 4pt,
+		xrightmargin = 4pt,
 	}
 	\cs_new_eq:NN \ctuthesis_lst_orig_lstinline:w \lstinline
 	\newsavebox \ctuthesis_lst_box
@@ -871,10 +912,12 @@
 		\begin{lrbox}{\ctuthesis_lst_box}
 		\ctuthesis_lst_orig_lstinline:w[#2]#3#4#3
 		\end{lrbox}
-		{\fboxsep0pt\colorbox{#1}{\strut\hspace*{\ctulstsep}\box\ctuthesis_lst_box\hspace*{\ctulstsep}}}
+		\str_if_eq:xnTF {#1} {none}
+			{{ \hbox:n {\strut\hspace*{\ctulstsep}\box\ctuthesis_lst_box\hspace*{\ctulstsep}} }}
+			{{ \fboxsep0pt\colorbox{#1} {\strut\hspace*{\ctulstsep}\box\ctuthesis_lst_box\hspace*{\ctulstsep}} }}
 		\microtypesetup{activate=true}
 	}
-	\DeclareDocumentCommand \ctulst { D(){ctulstbg} O{} m } {
+	\DeclareDocumentCommand \ctulst { D(){\g_ctuthesis_ctulstbg_tl} O{} m } {
 		\ctuthesis_lst_do_ctulstinline:nnw { #1 } { #2 } { #3 } #3
 	}
 	\DeclareDocumentCommand \ctulstbr { D(){ctulstbg} O{} m } {
@@ -901,18 +944,17 @@
 	\hypersetup{
 		colorlinks=false,
 		linktocpage=true,
-		linkbordercolor=ctuorange,
-		citebordercolor=ctuorange,
-		filebordercolor=ctuorange,
+		allbordercolors=ctuorange,
 	}
 	% Prepare PDFinfo
-	\cs_new:Nx \ctuthesis_hyperref_pdfinfo: {
+	\tl_new:N \g_ctuthesis_hyperref_pdfinfo_tl
+	\tl_set:Nx \g_ctuthesis_hyperref_pdfinfo_tl {
 		pdfinfo = {
-			Title = \ctuthesis_field_use:n {pdftitle},
-			Author = \ctuthesis_field_use:n {pdfauthor},
+			Title = \ctuthesis_field_use:nn { title } { title },
+			Author = \ctuthesis_field_use:n { author },
 		}
 	} 
-	\exp_args:NV \hypersetup \ctuthesis_hyperref_pdfinfo:
+	\exp_args:NV \hypersetup \g_ctuthesis_hyperref_pdfinfo_tl
 }{}
 
 %\ctuifswitch { pkg-hyperref } {
@@ -929,7 +971,7 @@
 % Provide \phantomsection and \texorpdfstring to make them available in case hyperref wasn't loaded
 \providecommand\phantomsection{}
 \providecommand\texorpdfstring[2]{#1}
-% Provide \microtype to make it available in case microtype wasn't loaded
+% Provide \microtypesetup to make it available in case microtype wasn't loaded
 \providecommand\microtypesetup[1]{}
 
 
