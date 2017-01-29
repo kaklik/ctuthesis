@@ -12,7 +12,7 @@
 	titlelanguage = english,
 %	mainlanguage = czech,
 	otherlanguages = {czech,english},
-	title-czech = {Rádiové určování polohy letících objektů},
+	title-czech = {Rádiové určování polohy rychle letících objektů},
 	title-english = {Radio position determination of the flying objects},
 %	subtitle-czech = {Cesta do tajů kdovíčeho},
 %	subtitle-english = {Journey to the who-knows-what wondeland},
@@ -30,8 +30,8 @@
 	subfieldofstudy-english = {Radio navigation},
 	fieldofstudy-czech = {Provoz a řízení letecké dopravy},
 	subfieldofstudy-czech = {Rádiová navigace},
-	keywords-czech = {slovo, klíč},
-	keywords-english = {word, key},
+	keywords-czech = {Radar, GRAVES, meteor, výpočet trajektorie metoru },
+	keywords-english = {Multi-static radar system, meteor, GRAVES, trajectory estimation},
 	day = 27,
 	month = 11,
 	year = 2016,
@@ -51,16 +51,16 @@
 	\def\subfieldofstudyname{Studijní program}%
 }
 
-%\ctutemplateset{maketitle twocolumn default}{
-%	\begin{twocolumnfrontmatterpage}
-%		\ctutemplate{twocolumn.thanks}
-%		\ctutemplate{twocolumn.declaration}
-%		\ctutemplate{twocolumn.abstract.in.titlelanguage}
-%		\ctutemplate{twocolumn.abstract.in.secondlanguage}
-%		\ctutemplate{twocolumn.tableofcontents}
-%		\ctutemplate{twocolumn.listoffigures}
-%	\end{twocolumnfrontmatterpage}
-%}
+\ctutemplateset{maketitle twocolumn default}{
+	\begin{twocolumnfrontmatterpage}
+		\ctutemplate{twocolumn.thanks}
+		\ctutemplate{twocolumn.declaration}
+		\ctutemplate{twocolumn.abstract.in.titlelanguage}
+		\ctutemplate{twocolumn.abstract.in.secondlanguage}
+		\ctutemplate{twocolumn.tableofcontents}
+		\ctutemplate{twocolumn.listoffigures}
+	\end{twocolumnfrontmatterpage}
+}
 
 % Theorem declarations, this is the reasonable default, anybody can do what they wish.
 % If you prefer theorems in italics rather than slanted, use \theoremstyle{plainit}
@@ -94,31 +94,30 @@
 
 \chapter{Motivation}
 
-Radio position determination of flying objects is standard radio location discipline which led to development of RADAR systems. At the present time the RADAR systems are enough mature to detect almost any radio-reflective artificial flying object in atmosphere or in near space. Therefore technology development is moving from focus on RADAR sensitivity to system stability, reliability and low operation costs. Resulting applied technologies leads to new scientific possibilities of observations and measurement which could bring new discoveries. 
+Radio position determination of flying objects is standard radiolocation discipline which led to the development of RADAR systems. At present, the RADAR systems are mature enough to detect almost any type of radio-reflective artificial flying object in the atmosphere or near space. \cite{Radar_basics} Therefore the technology development is moving from the focus on RADAR sensitivity to system stability, reliability, and low operation costs leaving no much space for scientific research. However, resulting applied technologies leads to new scientific possibilities of observations and measurement techniques which could bring new discoveries \cite{LOFAR}. Unfortunately,  due to a need of extraordinary parameters for scientific measurement, an experiment-specific radar system is usually required. 
 
 \section{Flying object parameters}
 
-From radar point of view where terminology usually uses a term target instead of object. The radar cross section (RCS) and object velocity are typical limiting parameters of the radar systems. These parameters vary largely depending on measured flying object type. 
+From radar point of view where terminology usually uses a term target instead of an object. The radar cross section (RCS) which describing the ability to reflect radio waves, object distance and velocity are typical limiting parameters of the radar systems. These parameters vary largely depending on the measured flying target type. 
 
 \subsection{Artificial airspace targets}
 
-A large group of possible radio reflective targets are classical airspace objects as airplanes, Unmanned Aerial vehicles or satellites. These classical objects are detectable and localizable with already existing radar systems. Parameters like RCS and trajectory or velocity of these object is usually known and are not attracting much interest of radio scientist except of utilize this object category for new system parameters verification. 
+A large group of possible radio reflective targets is classical airspace objects like airplanes, unmanned aerial vehicles or satellites. These classical objects are detectable and localizable with already existing radar systems. Parameters like RCS and trajectory or velocity of these object are usually known from other sources simultaneously and therefore are not attracting much interest of radio scientist except utilizing this object category for system parameters verification. 
 
 \subsection{Natural radio-detectable objects}
 
-Several natural atmospheric or near space phenomena are expected to be localized by radio-waves. The list contains Solar system bodies, meteors, ionospheric fluctuations, cosmic rays particles and atmospheric electrical discharges. Not all of these natural phenomenons have confirmed radio detection due to technical or yet unknown physical principles \cite{LOPES}.  But observation of natural phenomenons are generally scientifically more valuable than artificial objects \cite{astro_particles}. Therefore the work will be mainly focused on methods useful of natural phenomena measurement and detection. 
+Several natural atmospheric or near space phenomena are expected to be localized by radio-waves. The list contains Solar system bodies, meteors, ionospheric fluctuations, Solar flares, cosmic rays particles and atmospheric electrical discharges. Not all of these natural phenomena have confirmed radio detection due to technical limitations or yet unknown physical principles \cite{LOPES}.  But observation of natural phenomena are generally scientifically more valuable than artificial objects \cite{astro_particles}, \cite{LOFAR_showers}. Therefore the following text will be mainly focused on methods useful for natural phenomena measurement and detection. 
 
-Meteors were selected as primary testing phenomenon because they have unusual special properties like high velocities and wide range of RCS. Meteors, the products of meteoroids travelling in space, are studied for many decades. Results of such research help us to understand the evolution of not only the planetary system but the interplanetary medium \cite{interplanetary_medium} as well. As the density of the interplanetary medium is low, large statistical and long term continuous data set is necessary to describe its properties. There exist two radio waves observation methods which use the scattering ability of the ionized meteor trail.
+Meteors were selected primarily as the core testing phenomenon because they have unusual special properties like high velocities and the wide range of RCS. Meteors, the atmospheric products of meteoroids traveling in space, are studied for many decades. Results of such research help us to understand the evolution of not only the planetary system but the interplanetary and possibly interstellar medium \cite{interplanetary_medium} as well. As the density of the interplanetary medium is low, great statistic and long-term continuous data set is necessary to describe its properties. There exist two radio waves observation methods which use the scattering ability of the ionized meteor trail.
 
 The oldest known radio method is a backscatter radar. It is an ordinary type of radar which expects meteor trails to be reflective targets. Currently, several radars of this type are in operation to study meteors i. e.  SkiYMet\cite{skiymet}, CMOR \cite{CMOR_radar}.
 
-The general principle of meteor observing by the forward scattering of radio waves off their trails is illustrated in figure \ref{fig:forward_scattering}. A radio receiver with operating frequency range of 30-200MHz is located at proper distance (about 500-2000 km) from a transmitter. A curvature of the Earth over this distance ensures no possibility of direct radio wave contact. When a meteoroid enters the atmosphere, its meteor trail may reflect the radio waves emitted by transmitter to the receiver. The signal can be received until the ionized meteor trail recombines. Reflections can last from a tenths of a second to a few minutes, depending on their frequency and ionization intensity. The received signal characteristics are related to physical parameters of the meteoric event \cite{forward_scatter}.
-
-However, all of above mentioned monostatic or bistatic radars have very small detection coverage, usually limited to the radar antenna field of view. Therefore this radar types observe only several spatially limited areas of the Earth's atmosphere. But the benefits of using this method are obvious - radio meteor detection capability is not dependent on the current weather and can work even during the daylight or nights with full Moon \cite{daylight_shover}.
+However, all of above mentioned monostatic or bistatic backscatter radars have very small detection coverage, usually limited to the radar antenna field of view. Therefore this radar types observe only several spatially limited areas of the Earth's atmosphere. But the benefits of using this method are obvious - radio meteor detection capability is not dependent on the current weather and can work even during the daylight or nights with full Moon \cite{daylight_shover}.
 
 Besides the above-mentioned scientific radar systems a multistatic radio meteor detection networks have evolved \cite{BRAMS}.
 These forward scattering multistatic systems have great advantage of a large detection coverage. Unfortunately, the current spread of this technology is not sufficient to entirely cover the meteor flux of the Earth's atmosphere.
 
+The general principle of meteor observing by the forward scattering of radio waves off their trails illustrating the figure \ref{fig:forward_scattering}. A radio receiver with operating frequency range of 30-200MHz located at the proper distance (about 500-2000 km) from a transmitter. A curvature of the Earth or terrain features over this distance ensures there is no possibility of direct radio wave contact. When a meteoroid enters the atmosphere, its meteor trail may reflect the radio waves emitted by the transmitter to the receiver. The signal can be received until the ionized meteor trail recombines. Reflections can last from tenths of a second to a few minutes, depending on used radio frequency and ionization intensity. The received signal characteristics are directly related to physical parameters of the meteoric event \cite{forward_scatter}.
 
 \begin{figure}
  \begin{center}
@@ -130,11 +129,11 @@ These forward scattering multistatic systems have great advantage of a large det
 
 \subsection{Position determination methods}
 
-If we want to find out object position by radio signal reflected or transmitted by the object. We have only a small number of signal features which we could use to obtain information about object coordinates. The best method used for determination of object position depends on type of an object required precision of measurement and application. In most cases for unknown flying object we need to combine several of following methods. 
+If we want to estimate target position by radio signal reflected or transmitted by the target, we have only a small number of signal features which we could use to obtain information about target coordinates. The best method used for determination of target position depends on target type,  the precision of measurement required and intended application. In most cases for an unknown flying object, we need to implement and combine several of following general methods. 
 
 \subsection{Triangulation}
 
-Radio direction finding is the oldest radio localization method. 
+Radio direction finding is the oldest radio localization method.  It uses receiver system sensitive to the angular orientation of the incoming signal.  The target is localized by 
 
 \subsection{Distance measurement}
 
@@ -159,7 +158,7 @@ Where
 
 \chapter{Meteor trajectory determination}
 
-Every radio illuminated meteor trajectory in atmosphere create its own Doppler shift reflection footprint.  This process could be easily modeled by a numerical calculation of Doppler shifts in points of trajectory. For a simplicity, the presented model expects constant velocity along a straight line of the meteor path which is divided to equidistant time samples. A numerical difference of path distances between transmitter, meteor and receiver is calculated. Then velocity and Doppler shift value is obtained for every point of trajectory. 
+Every radio illuminated meteor trajectory in the atmosphere create its Doppler shift reflection footprint.  This process could be described by a numerical model of Doppler shifts for points at the trajectory. For simplicity, the presented model expects constant velocity along a straight line of the meteor path which is divided into equidistant time samples. A numerical difference of path distances between transmitter, meteor and receiver is calculated. Then velocity and Doppler shift value are obtained for every point of the trajectory. 
 The resulting figure of Doppler shifts calculated along the model meteor path visible to every existing station is shown in figure \ref{fig:dopplers}. 
 
 
@@ -307,9 +306,18 @@ Unfortunately the resulting antenna resonance was at 161.5 MHz as is shown in fi
 \bibliography{refs}
 \bibliographystyle{plain}
 
+\bibitem{Radar_basics}
+Small and Short-Range Radar Systems,Gregory L. Charvat, CRC Press 2014,Pages 1–35, Print ISBN: 978-1-4398-6599-6,eBook ISBN: 978-1-4398-6600-9
+
 \bibitem{LOPES}
 F. G. Schröder, Instruments and Methods for the Radio Detection of High Energy Cosmic Rays,
 \emph{DISSERTATION}, Tag der mündlichen Prüfung: 11. Februar 2011
+
+\bibitem{LOFAR}
+K. Mikhailov, J. van Leeuwen, The LOFAR search for radio pulsars and fast transients in M33, M81 & M82,Astrophysics of Galaxies, A&A 593, A21 (2016), DOI: 10.1051/0004-6361/201628348
+
+\bibitem{LOFAR_showers}
+Radio detection of air showers with LOFAR and AERA - LOFAR key science project Cosmic Rays and Pierre Auger Collaborations (Hörandel, Jörg R. for the collaboration) JPS Conf.Proc. 9 (2016) 010004 arXiv:1509.04960 [astro-ph.HE]
 
 \bibitem{interplanetary_medium}
 MANN, I., PELLINEN-WANNBERG, A., MURAD, E., et. al.
