@@ -12,7 +12,7 @@
 	titlelanguage = english,
 %	mainlanguage = czech,
 	otherlanguages = {czech,english},
-	title-czech = {Rádiové určování polohy rychle letících objektů},
+	title-czech = {Rádiové určování polohy letících objektů},
 	title-english = {Radio position determination of the flying objects},
 %	subtitle-czech = {Cesta do tajů kdovíčeho},
 %	subtitle-english = {Journey to the who-knows-what wondeland},
@@ -43,6 +43,17 @@
 %	layout-short = true,
 	savetoner = false,
 }
+
+% Abstract in Czech
+\begin{abstract-czech}
+Pokročilé radiové systémy jsou dnes běžnou součástí některých komerčních zařízení. Tato studie se zabývá využitím těchto poznatků a technologií k řešení některých vědeckých problémů. 
+\end{abstract-czech}
+
+% Abstract in English
+\begin{abstract-english}
+Advanced radio systems a the standard part of some commercial devices. This thesis deals with the use of resulting technology to solve some scientific problems.
+\end{abstract-english}
+
 
 \ctuprocess
 
@@ -98,7 +109,7 @@ Radio position determination of flying objects is a standard radiolocation disci
 
 \section{Flying object parameters}
 
-From a radar point of view the terminology usually uses a term target instead of an object. The radar cross section (RCS; describing the ability to reflect radio waves), object distance and velocity are typical limiting parameters of the radar systems. These parameters vary largely depending on the measured flying target type. 
+From a radar point of view, the terminology usually uses a term target instead of an object. The radar cross section (RCS; describing the ability to reflect radio waves), object distance and velocity are typical limiting parameters of the radar systems. These parameters vary largely depending on the measured flying target type. 
 
 \subsection{Artificial airspace targets}
 
@@ -114,7 +125,7 @@ The oldest known radio method is a backscatter radar. It is an ordinary type of 
 
 However, all of above mentioned monostatic or bistatic backscatter radars have little detection coverage, usually limited to the radar antenna field of view. Therefore these radar types observe only several spatially limited areas of the Earth's atmosphere. However, the benefits of using this method are obvious - radio meteor detection capability is not dependent on the current weather and can work even during the daylight or nights with full Moon \cite{daylight_shover}.
 
-Besides the above-mentioned scientific radar systems a multistatic radio meteor detection networks have evolved \cite{BRAMS}.
+Besides the above-mentioned scientific radar systems, a multistatic radio meteor detection networks have evolved \cite{BRAMS}.
 These forward scattering multistatic systems have a great advantage of a significant detection coverage. Unfortunately, the current spread of this technology is not sufficient to entirely cover the meteor flux in the Earth's atmosphere.
 
 The general principle of meteor observing by the forward scattering of radio waves off their trails is illustrated by the figure \ref{fig:forward_scattering}. A radio receiver with operating frequency range of 30-200MHz located at a proper distance (about 500-2000 km) from a transmitter. A curvature of the Earth or terrain features over this distance ensures there is no possibility of direct radio wave contact. When a meteoroid enters the atmosphere, its meteor trail may reflect the radio waves emitted by the transmitter to the receiver. The signal can be received until the ionized meteor trail recombines. Reflections can last from tenths of a second to a few minutes, depending on used radio frequency and ionization intensity. The received signal characteristics are directly related to physical parameters of the meteoric event \cite{forward_scatter}.
@@ -133,7 +144,7 @@ If we want to estimate target position by radio signal reflected or transmitted 
 
 \subsection{Direction finding}
 
-Radio direction finding is the oldest radio localization method.  It uses receiver system sensitive to the angular orientation of the incoming signal.  The target is then localized by combining angular information from multiple receivers.  The direction sensitivity of a system was historically achieved by using a directional antenna. Nowadays the system usually uses antenna arrays consisting of antenna elements with a semi-omnidirectional radiating pattern, but angular information combining process is still based on a triangulation. 
+Radio direction finding is the oldest radio localization method.  It uses receiver system sensitive to the angular orientation of the incoming signal.  The target is then localized by combining angular information from multiple receivers.  The direction sensitivity of a system was historically achieved by using a directional antenna. Nowadays the system usually uses antenna arrays consisting of antenna elements with a semi-omnidirectional radiating pattern, but angular information combining process is still based on triangulation. 
 
 \subsection{Distance measurement}
 Localizing a target by radio distance measurement usually uses the time-variable radio signal, rarely a signal attenuation model.  The target position is obtained by combining measured distances between the target and the receiver using geometrical trilateration or multilateration. The general limiting factor of this method is the requirement of a time-space variance of the radio signal which could not be achieved in every case. 
@@ -188,7 +199,7 @@ The network currently uses GRAVES \cite{GRAVES_radar} transmitter located in Fra
 \end{figure}
                    
 The use of such high-frequency beacon has one main advantage over the previous meteor detection experiments.
-Previous attempts used longer radio wavelengths in frequency range 20-50 MHz. Such long wavelengths were used to obtain a higher sensitivity to finer meteor trails. According to a simplified formula (\ref{equ:decay}), where $T$ is the exponential time constant and $D$ is ambipolar diffusion coefficient and $\lambda$ is wavelength \cite{Decay_time}. The equation implies that at longer wavelengths we observe the meteor's echo for longer period of time compared to shorter wavelengths. However, shorter wavelengths allow us to detect finer details of meteor trails.
+Previous attempts used longer radio wavelengths in frequency range 20-50 MHz. Such long wavelengths were used to obtain a higher sensitivity to finer meteor trails. According to a simplified formula (\ref{equ:decay}), where $T$ is the exponential time constant and $D$ is ambipolar diffusion coefficient and $\lambda$ is wavelength \cite{Decay_time}. The equation implies that at longer wavelengths we observe the meteor's echo for a longer period of time compared to shorter wavelengths. However, shorter wavelengths allow us to detect finer details of meteor trails.
 
 \begin{equation}
 T = \frac{\lambda^2}{16 \pi ^2 D}
@@ -283,21 +294,20 @@ Patch antenna was initially examined due to an expectation of a simple construct
 
 \subsection{Short-circuited quadrifilar helix}
 
-Another antenna type was proposed to overcome the issues of the previous antenna design experiment.  Short-circuited quadrifilar helix (SC-QHA) is a variant of a well-known self-phased quadrifilar helix antenna (SP-QHA). However, unlike the SP-QHA type, the  SC-QHA has narrower bandwidth which depends primarily on a bandwidth of a phasing network. Therefore the antenna could be more efficient for narrow band signals like meteor reflections.  The antenna was numerically modeled in NEC2++ software.
+Another antenna type was proposed to overcome the issues of the previous antenna design experiment.  Short-circuited quadrifilar helix (SC-QHA) is a variant of a well-known self-phased quadrifilar helix antenna (SP-QHA). However, unlike the SP-QHA type, the  SC-QHA has a narrower bandwidth which depends primarily on a bandwidth of a phasing network. Therefore the antenna could be more efficient for narrow band signals like meteor reflections.  The antenna was numerically modeled in NEC2++ software.
 
 \chapter{Future work}
 
-Althought some meteor trajectory estimation algorithms are developed, the real precision of estimation is unknown because it needs a comparison with other trajectory estimation method. The best candidate will be probably optical measurement performed at the event which is detected by radio method and by optical observations. 
-Algorithmic complexity of meteor trajectory estimation could be possibly reduced by introducing some additional information other than velocity measurements.  The direction finding  using phased antenna array is the most promising candidate for improving the measurement method because a distance measurement is not usable for meteors due to the lack of a globally available network of transmitters which allows distance measurement.  Such localization method could be used for natural phenomena which produce a wide-band time limited signal such as lightning.
+Although some meteor trajectory estimation algorithms are developed, the real precision of estimation is unknown because it needs a comparison with other trajectory estimation method. The best candidate will be probably optical measurement performed at the event which is detected by radio method and by optical observations. 
+Algorithmic complexity of meteor trajectory estimation could be possibly reduced by introducing some additional information other than velocity measurements.  The direction finding using phased antenna array is the most promising candidate for improving the measurement method because a distance measurement is not usable for meteors due to the lack of a globally available network of transmitters which allows distance measurement.  Such localization method could be used for natural phenomena which produce a wide-band time limited signal such as lightning.
 
 \section{Expansion of used methods to other natural phenomena}
 
-The analysis mentioned above of state of the art methods and systems leads to a conclusion that the dissertation should focus on multi-methodical detection and analysis of natural phenomena which  is already the most promising area for radio scientific research. 
+The analysis mentioned above of state of the art methods and systems leads to a conclusion that the dissertation should focus on multi-methodical detection and analysis of natural phenomena which is already the most promising area for radio scientific research. 
 
-An already obtained experiences can be used for detection other natural phenomena like lightning strikes which could be extremely useful for work at CRREAT project which needs precise localization of atmospheric events to achieve its scientific goals. 
+Already obtained experiences can be used for detection other natural phenomena like lightning strikes which could be extremely useful for work at the CRREAT project which needs precise localization of atmospheric events to achieve its scientific goals. Measurement of lightning position and its parameters are needed for determine the dependence on some other phenomena.  
 
 The CRREAT team will perform measurements of the atmospheric radiation and ionization events on satellites, aircraft, unmanned aerial vehicles, monitoring cars and ground stations. The CRREAT project will contribute to improvement of space weather models, air transport safety and global navigation systems reliability.
-
 
 \appendix
 
