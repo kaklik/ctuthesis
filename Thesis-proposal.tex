@@ -95,32 +95,34 @@
 \maketitle
 
 \chapter{Motivation}
+Radio position determination of flying objects is a standard radiolocation discipline which historically led to the development of radar systems. At present, the radar systems are mature enough to detect almost any type of radio-reflective artificial flying object in the atmosphere or near space. \cite{Radar_basics} Therefore the technology development is moving from the focus on radar sensitivity to system stability, reliability, and low operation costs leaving little space for scientific research. However, resulting applied technologies lead to new scientific possibilities of observations and measurement techniques which could bring new discoveries \cite{LOFAR}. Unfortunately, due to a need of specific parameters for scientific measurement, an experiment-specific radar system is usually built. 
+This approach is shown in recent scientific papers, which describe state of the art radio detection methods of natural phenomena. For example, a lighting detection systems like \cite{NMLMA} uses specifically designed direction finding and time measurement receiver system.  Another system is designed to be a meteor scatter receiver on the specific frequency and position \cite{BRAMS}. 
+By combining parameters required by these and possibly other systems a universal receiver useful for natural object detection a scientific radio-measurement apparatus could emerge. The source \cite{LOFAR} describes the first and extremely expensive solution for this problem. The LOFAR station design and requirements are prohibitive for widespread scientific use, but a use of new techniques could scale down the station complexity and allows a small scale high-quality radio experiments. 
 
-Radio position determination of flying objects is a standard radiolocation discipline which historically led to the development of radar systems. At present, the radar systems are mature enough to detect almost any type of radio-reflective artificial flying object in the atmosphere or near space. \cite{Radar_basics} Therefore the technology development is moving from the focus on radar sensitivity to system stability, reliability, and low operation costs leaving little space for scientific research. However, resulting applied technologies lead to new scientific possibilities of observations and measurement techniques which could bring new discoveries \cite{LOFAR}. Unfortunately, due to a need for specific parameters for scientific measurement, an experiment-specific radar system is usually required. 
+\section{Main object parameters}
 
-
-
-
-\section{Flying object parameters}
-
-From a radar point of view, the terminology usually uses a term target instead of an object. The radar cross section (RCS; describing the ability to reflect radio waves), object distance and velocity are typical limiting parameters of the radar systems. These parameters vary largely depending on the measured flying target type. 
+From a radar point of view, the terminology usually uses a term target instead of an object. The radar cross section (RCS; describing the ability to reflect radio waves), object distance and velocity are typical limiting parameters of the radar systems. These parameters vary largely depending on the measured target type and limit overall energy budget of the radar system.
 
 \subsection{Artificial airspace targets}
 
-A large group of possible radio reflective targets includes classical airspace objects like airplanes, unmanned aerial vehicles or satellites. These classical objects are detectable and localizable with already existing radar systems. Parameters like RCS and trajectory or velocity of these object are usually known from other sources simultaneously and therefore are not attracting much interest of radio scientist except utilizing this object category for system parameters verification. 
+A large group of possible radio reflective targets includes classical airspace objects like airplanes, unmanned aerial vehicles or satellites. These classical objects are detectable and localizable with already existing radar systems. Parameters like RCS and trajectory or velocity of these object are usually known from other sources simultaneously and therefore are not attracting much interest of radio scientist except utilizing this object category for system parameters verification. Otherwise, these objects are usually treated as noise in scientific measurements. 
 
 \subsection{Natural radio-detectable objects}
 
-Several natural atmospheric or near space phenomena are expected to be localized by radio-waves. The list contains Solar system bodies, meteors, ionospheric fluctuations, solar flares, cosmic rays' particles and atmospheric electrical discharges. Not all of these natural phenomena have confirmed radio detection due to technical limitations or yet unknown physical principles \cite{LOPES}.  But observation of natural phenomena are generally scientifically more valuable than artificial objects \cite{astro_particles}, \cite{LOFAR_showers}. Therefore the following text will be mainly focused on methods useful for natural phenomena measurement and detection. 
+Several natural atmospheric or near space phenomena are expected to be localized by radio-waves. The list, for example, contains Solar system bodies, meteors, ionospheric fluctuations, solar flares, cosmic rays' particles and atmospheric electrical discharges. Not all of these natural phenomena have confirmed radio detection due to technical limitations or yet unknown physical principles \cite{LOPES}.  But observation of natural phenomena are generally scientifically more valuable than artificial objects \cite{astro_particles}, \cite{LOFAR_showers}. Therefore the following text will be mainly focused on methods useful for natural phenomena measurement and detection. 
 
-Meteors were selected primarily as the core testing phenomenon because they have unusual properties like high velocities and a wide range of RCS. Meteors, the atmospheric products of meteoroids traveling in space, are studied for many decades. Results of such research help us to understand the evolution of not only the planetary system but the interplanetary and possibly interstellar medium \cite{interplanetary_medium} as well. As the density of the interplanetary medium is low, great statistic and long-term continuous data set is necessary to describe its properties. There exist two radio waves observation methods which use the scattering ability of the ionized meteor trail.
+\subsubsection{Reflective objects}
 
-The oldest known radio method is a backscatter radar. It is an ordinary type of radar which expects meteor trails to be reflective targets. Currently, several radars of this type are in operation to study meteors i. e.  SkiYMet\cite{skiymet}, CMOR \cite{CMOR_radar}.
+The one of oldest known radio detection method is a backscatter radar. It is an ordinary type of radar which expects reflective targets (meteor trails for example). Currently, several radars of this type are in operation to study meteors i. e.  SkiYMet\cite{skiymet}, CMOR \cite{CMOR_radar}.
 
-However, all of above mentioned monostatic or bistatic backscatter radars have little detection coverage, usually limited to the radar antenna field of view. Therefore these radar types observe only several spatially limited areas of the Earth's atmosphere. However, the benefits of using this method are obvious - radio meteor detection capability is not dependent on the current weather and can work even during the daylight or nights with full Moon \cite{daylight_shover}.
+Meteors, the atmospheric products of meteoroids traveling in space, are studied for many decades. Results of such research help us to understand the evolution of not only the planetary system but the interplanetary and possibly interstellar medium \cite{interplanetary_medium} as well. As the density of the interplanetary medium is low, great statistic and long-term continuous data set is necessary to describe its properties. 
 
-Besides the above-mentioned scientific radar systems, a multistatic radio meteor detection networks have evolved \cite{BRAMS}.
+However, all mentioned  \cite{skiymet},\cite{CMOR_radar}  monostatic or bistatic backscatter radars have little detection coverage, usually limited to the radar antenna field of view. Therefore these radar types observe only several spatially limited areas of the Earth's atmosphere.
+Besides the backscatter scientific radar systems, a multistatic scatter radio meteor detection networks have evolved \cite{BRAMS},\cite{RETRAM}.
 These forward scattering multistatic systems have a great advantage of a significant detection coverage. Unfortunately, the current spread of this technology is not sufficient to entirely cover the meteor flux in the Earth's atmosphere.
+ However, the benefits of using this radio method are obvious - radio meteor detection capability is not dependent on the current weather and can work even during the daylight or nights with full Moon \cite{daylight_shover}.
+
+The main improvement of coverage which the forward scattering method brings originate in the fact that one or multiple radio-frequency transmitters can be cooperatively used simultaneously over the large area.
 
 The general principle of meteor observing by the forward scattering of radio waves off their trails is illustrated by the figure \ref{fig:forward_scattering}. A radio receiver with operating frequency range of 30-200MHz located at a proper distance (about 500-2000 km) from a transmitter. A curvature of the Earth or terrain features over this distance ensures there is no possibility of direct radio wave contact. When a meteoroid enters the atmosphere, its meteor trail may reflect the radio waves emitted by the transmitter to the receiver. The signal can be received until the ionized meteor trail recombines. Reflections can last from tenths of a second to a few minutes, depending on used radio frequency and ionization intensity. The received signal characteristics are directly related to physical parameters of the meteoric event \cite{forward_scatter}.
 
@@ -132,7 +134,19 @@ The general principle of meteor observing by the forward scattering of radio wav
  \end{center}
 \end{figure}
 
-\subsection{Position determination methods}
+\subsubsection{Emissive objects}
+
+Another object detection principle relies on the fact that some phenomena are radio emissive targets itself. A typical example of such object is thunderstorm lightning. The lightning detection and localization stations work on VLF, LF, and UHF radio bands. Specific frequency and bandwidth selected depend on the use case of the system. The long range lighting surveillance systems use VLF frequencies. Essentially all methods that provide accurate information about the location,  polarity,  and peak current of return strokes
+in the cloud to ground, lightning operates in this frequency range. This sensor type usually extracts a basic signal feature like time of trigger and amplitude by preset of waveform discrimination criteria. Then the measured time and possible azimuth of received signal the event from multiple stations is processed in the central processing unit. The signal source is assumed to be point-like; therefore the spatial resolution of the best implementations of this technique are limited to sub-kilometer precision \cite{Lighting_locating}. 
+For more precise measurement a higher radio frequencies are used the mostly from UHF band, where combination of time of arrival and interferometry methods are used for reconstructing lighting channel\cite{NALMA_algorithms},\cite{rocket_triggered} . 
+
+The newer detection systems are  exclusively based on proprietary Vaisala  IMPACT \cite{IMPACT_sensor} or TLS200/TSS928/LS7002 lightning sensors. 
+Furthermore commercial off the shelf products are preferred systems for long-term sustainability \cite{4DLSS}. Unfortunately, these systems are intended to be used in meteorological measurements and safety use. Therefore are not suitable for research of atmospheric phenomena. The only one exception to this trend I have found in the literature is lighting research which takes place in LOFAR project \cite{LOFAR_lightning}, \cite{LOFAR_lightning2}.  
+
+
+
+
+\section{Common position determination methods}
 
 If we want to estimate target position by radio signal reflected or transmitted by the target, we have only a small number of signal features which we could use to obtain the information about target coordinates. The best method to be used for determination of target position depends on the target type, the precision of measurement required and intended application. In most cases for an unknown flying object, we need to implement and combine several of the following general methods. 
 
@@ -142,6 +156,10 @@ Radio direction finding is the oldest radio localization method.  It uses receiv
 
 \subsection{Distance measurement}
 Localizing a target by radio distance measurement usually uses the time-variable radio signal, rarely a signal attenuation model.  The target position is obtained by combining measured distances between the target and the receiver using geometrical trilateration or multilateration. The general limiting factor of this method is the requirement of a time-space variance of the radio signal which could not be achieved in every case. 
+
+% http://wwlln.net/publications/dowden.toga.article.pdf
+% http://www.lightning.nmt.edu/nmt_lms/descrip.html
+
 
 \subsection{Velocity measurement}
 
@@ -162,25 +180,23 @@ Where
 
 This method can localize only moving targets, but it is especially suitable for fast airspace targets which could not stop their movement due to physical laws restrictions. 
 
-\chapter{Meteor trajectory determination}
+\chapter{Experimental verification}
 
-Every radio illuminated meteor trajectory in the atmosphere creates its Doppler shift reflection footprint.  This process could be described by a numerical model of Doppler shifts for points on the trajectory. For simplicity, the tested model expects constant velocity along a straight line of the meteor path which is divided into equidistant time samples. A numerical difference of path distances between transmitter, meteor, and receiver are computed, then velocity and Doppler shift value are obtained for every point of the trajectory. 
-The resulting figure of Doppler shifts calculated along the model meteor path radio-detectable on every existing station is shown in figure \ref{fig:dopplers}. 
+The source \cite{LOFAR_lightning} suggests that the lightning pulses are strongly
+polarized where the polarization direction varies strongly for the individual peaks that form the
+total pulse. Combining the intensity and polarization information from many different antennas
+at different viewing angles on the discharge, the time structure, and direction of each
+step can be determined.  This forms the input for building a 4-D vector map of the
+discharge current showing for every step the position in space as well as the direction of the
+electric current and therefore giving detailed insight into the spatiotemporal development of the
+leaders.  The shape of each pulse is related to the time-dependence and the
+distance over which the current flows.
 
-\begin{figure*}
- \begin{center}
- \includegraphics[width=\textwidth]{./img/Meteor_dopplers.png}
- \caption{Doppler shifts calculated for meteor ground path displayed in the figure \ref{fig:stanice_mapa}.}
-  \label{fig:dopplers} 
- \end{center}
-\end{figure*}
 
 
-This signal model can be partially confirmed from Bolidozor meteor database where several meteor events are recorded on multiple stations. If we plot such meteor event in time aligned spectrogram, we obtain an image similar to the figure \ref{fig:meteor_reflections}.
-Precise meteor trajectory estimation methods are investigated at the moment.  One of the difficulties is a possible suboptimal geometry configuration and low inter-station events correlation.
+\section{Meteor detection system}
 
-\section{GRAVES based detection system}
-
+Meteors were selected primarily as the core natural objects testing phenomenon because they have unusual properties like high velocities and a wide range of RCS.
 Bolidozor uses multistatic forward scattering approach which allows an efficient use of the radar transmitter energy to maximize the information value collected from the meteor reflection.
 The network currently uses GRAVES \cite{GRAVES_radar} transmitter located in France, which transmits a continuous wave (CW) signal at a frequency of 143.05 MHz. A radiation of the transmitter is directed mainly to the south hemisphere, but due to the imperfections of its antenna system, the signal from meteor reflections can be observed in almost all European countries. Therefore the transmitter is suitable for receivers' network operations with the aim of meteor trail detection and the development of algorithms for the calculation of meteor trajectory. Unfortunately, the use of a distance measurement method is not possible because the transmitter signal is only partially modulated in space by steering the transmit azimuth in several discrete sectors, but the exact method and timing of steering radar beam is something we can not control. 
 
@@ -232,7 +248,7 @@ As a result, a new type of radio meteor detection system is being built, based o
 We currently have an extensive database of multi-station meteor reflections. Unfortunately, we have yet not reached a suitable network geometry to reliably obtain meteor position and trajectory by the known methods \cite{Doppler_method}. 
 To overcome the missing algorithm issue, a further evolution of Bolidozor network should be focused on the research of the new trajectory estimation algorithms. We are also working on the network extension with the aim of extending its service area as well as increasing the station's density which should decrease data noise and improve the numerical stability of algorithms. 
 
-\section{VOR Transmitters as signal sources}
+\subsection{VOR Transmitters as signal sources}
 Although GRAVES military radar is a high power transmitter which easily allows basic detection of meteors, it is not an optimal system for meteor localization because it only has one transmitter, measurement method cannot be extended to the whole earth, and the transmitted signal is not suitably modulated to allow a useful distance measurement.  Therefore several other available transmitters are investigated, such as FM radio transmitters or VOR beacons. 
 
 For feasibility study of meteor detection based on VOR beacons, a numerical signal model has been created. The spectrum of modeled signal is shown in figure \ref{VOR_signal}.
@@ -290,10 +306,28 @@ Patch antenna was initially examined due to an expectation of a simple construct
 
 Another antenna type was proposed to overcome the issues of the previous antenna design experiment.  Short-circuited quadrifilar helix (SC-QHA) is a variant of a well-known self-phased quadrifilar helix antenna (SP-QHA). However, unlike the SP-QHA type, the  SC-QHA has a narrower bandwidth which depends primarily on a bandwidth of a phasing network. Therefore the antenna could be more efficient for narrow band signals like meteor reflections.  The antenna was numerically modeled in NEC2++ software.
 
+\section{Meteor trajectory determination}
+
+Every radio illuminated meteor trajectory in the atmosphere creates its Doppler shift reflection footprint.  This process could be described by a numerical model of Doppler shifts for points on the trajectory. For simplicity, the tested model expects constant velocity along a straight line of the meteor path which is divided into equidistant time samples. A numerical difference of path distances between transmitter, meteor, and receiver are computed, then velocity and Doppler shift value are obtained for every point of the trajectory. 
+The resulting figure of Doppler shifts calculated along the model meteor path radio-detectable on every existing station is shown in figure \ref{fig:dopplers}. 
+
+\begin{figure*}
+ \begin{center}
+ \includegraphics[width=\textwidth]{./img/Meteor_dopplers.png}
+ \caption{Doppler shifts calculated for meteor ground path displayed in the figure \ref{fig:stanice_mapa}.}
+  \label{fig:dopplers} 
+ \end{center}
+\end{figure*}
+
+
+This signal model can be partially confirmed from Bolidozor meteor database where several meteor events are recorded on multiple stations. If we plot such meteor event in time aligned spectrogram, we obtain an image similar to the figure \ref{fig:meteor_reflections}.
+Precise meteor trajectory estimation methods are investigated at the moment.  One of the difficulties is a possible suboptimal geometry configuration and low inter-station events correlation.
+
+
 \chapter{Future work}
 
 Although some meteor trajectory estimation algorithms are developed, the real precision of estimation is unknown because it needs a comparison with other trajectory estimation method. The best candidate will be probably optical measurement performed at the event which is detected by radio method and by optical observations. 
-Algorithmic complexity of meteor trajectory estimation could be possibly reduced by introducing some additional information other than velocity measurements.  The direction finding using phased antenna array is the most promising candidate for improving the measurement method because a distance measurement is not usable for meteors due to the lack of a globally available network of transmitters which allows distance measurement.  Such localization method could be used for natural phenomena which produce a wide-band time limited signal such as lightning.
+Algorithmic complexity of meteor trajectory estimation could be possibly reduced by introducing some additional information other than velocity measurements.  The direction finding using phased antenna array is the most promising candidate for improving the measurement method because a distance measurement is not usable for meteors due to the lack of a globally available network of transmitters which signal allows distance measurement.  However, this localization method could be used for natural phenomena which produce a wide-band time limited noise-like signal such as lightning.
 
 \section{Expansion of used methods to other natural phenomena}
 
@@ -304,7 +338,6 @@ Already obtained experiences can be used for detection other natural phenomena l
 The CRREAT team will perform measurements of the atmospheric radiation and ionization events on satellites, aircraft, unmanned aerial vehicles, monitoring cars and ground stations. The CRREAT project will contribute to improvement of space weather models, air transport safety and global navigation systems reliability.
 
 \appendix
-
 \printindex
 
 \appendix
