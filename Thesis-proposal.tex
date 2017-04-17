@@ -122,9 +122,9 @@ Besides the backscatter scientific radar systems, a multistatic scatter radio me
 These forward scattering multistatic systems have a great advantage of a significant detection coverage. Unfortunately, the current spread of this technology is not sufficient to entirely cover the meteor flux in the Earth's atmosphere.
  However, the benefits of using this radio method are obvious - radio meteor detection capability is not dependent on the current weather and can work even during the daylight or nights with full Moon \cite{daylight_shover}.
 
-The main improvement of coverage which the forward scattering method brings originate in the fact that one or multiple radio-frequency transmitters can be cooperatively used simultaneously over the large area.
+The main improvement of coverage which the forward scattering method brings originate in the fact that one or multiple radio-frequency transmitters can be cooperatively used simultaneously over the large area. Additionally, forward scattering geometry decreases the angle of reflection, therefore, increasing the available illuminating frequency of the transmitter. 
 
-The general principle of meteor observing by the forward scattering of radio waves off their trails is illustrated by the figure \ref{fig:forward_scattering}. A radio receiver with operating frequency range of 30-200MHz located at a proper distance (about 500-2000 km) from a transmitter. A curvature of the Earth or terrain features over this distance ensures there is no possibility of direct radio wave contact. When a meteoroid enters the atmosphere, its meteor trail may reflect the radio waves emitted by the transmitter to the receiver. The signal can be received until the ionized meteor trail recombines. Reflections can last from tenths of a second to a few minutes, depending on used radio frequency and ionization intensity. The received signal characteristics are directly related to physical parameters of the meteoric event \cite{forward_scatter}.
+The general principle of meteor observing by the forward scattering of radio waves off their trails is illustrated by the figure \ref{fig:forward_scattering}. A radio receiver with operating frequency range of 30-200MHz located at a proper distance (about 500-2000 km) from a transmitter. A curvature of the Earth or terrain features over this distance ensures there is no possibility of direct radio visibility. When a meteoroid enters the atmosphere, its meteor trail may reflect the radio waves emitted by the transmitter to the receiver. The signal can be received until the ionized meteor trail recombines. Reflections can last from tenths of a second to a few minutes, depending on used radio frequency and ionization density. The received signal characteristics are directly related to physical parameters of the meteoric event \cite{forward_scatter}.
 
 \begin{figure}
  \begin{center}
@@ -136,15 +136,12 @@ The general principle of meteor observing by the forward scattering of radio wav
 
 \subsubsection{Emissive objects}
 
-Another object detection principle relies on the fact that some phenomena are radio emissive targets itself. A typical example of such object is thunderstorm lightning. The lightning detection and localization stations work on VLF, LF, and UHF radio bands. Specific frequency and bandwidth selected depend on the use case of the system. The long range lighting surveillance systems use VLF frequencies. Essentially all methods that provide accurate information about the location,  polarity,  and peak current of return strokes
+Another object detection principle relies on the fact that some phenomena are radio emissive targets itself. A typical example of such object is thunderstorm lightning. The lightning detection and localization stations work on VLF, LF, and VHF radio bands. Specific frequency and bandwidth selected depend on the use case of the system. The long range lighting surveillance systems use VLF frequencies. Essentially all methods that provide accurate information about the location,  polarity,  and peak current of return strokes
 in the cloud to ground, lightning operates in this frequency range. This sensor type usually extracts a basic signal feature like time of trigger and amplitude by preset of waveform discrimination criteria. Then the measured time and possible azimuth of received signal the event from multiple stations is processed in the central processing unit. The signal source is assumed to be point-like; therefore the spatial resolution of the best implementations of this technique are limited to sub-kilometer precision \cite{Lighting_locating}. 
-For more precise measurement a higher radio frequencies are used the mostly from UHF band, where combination of time of arrival and interferometry methods are used for reconstructing lighting channel\cite{NALMA_algorithms},\cite{rocket_triggered} . 
+For more precise measurement a shorter wavelength is used the mostly from VHF band, where a combination of time of arrival and interferometry methods are used for reconstructing lighting channel \cite{NALMA_algorithms}, \cite{rocket_triggered} . 
 
-The newer detection systems are  exclusively based on proprietary Vaisala  IMPACT \cite{IMPACT_sensor} or TLS200/TSS928/LS7002 lightning sensors. 
+The newer detection systems are exclusively based on proprietary Vaisala  IMPACT \cite{IMPACT_sensor} or TLS200/TSS928/LS7002 lightning sensors. 
 Furthermore commercial off the shelf products are preferred systems for long-term sustainability \cite{4DLSS}. Unfortunately, these systems are intended to be used in meteorological measurements and safety use. Therefore are not suitable for research of atmospheric phenomena. The only one exception to this trend I have found in the literature is lighting research which takes place in LOFAR project \cite{LOFAR_lightning}, \cite{LOFAR_lightning2}.  
-
-
-
 
 \section{Common position determination methods}
 
@@ -156,10 +153,10 @@ Radio direction finding is the oldest radio localization method.  It uses receiv
 
 \subsection{Distance measurement}
 Localizing a target by radio distance measurement usually uses the time-variable radio signal, rarely a signal attenuation model.  The target position is obtained by combining measured distances between the target and the receiver using geometrical trilateration or multilateration. The general limiting factor of this method is the requirement of a time-space variance of the radio signal which could not be achieved in every case. 
+In some cases, a pulse signal could be used for distance measurement. This technique is used in almost all existing lightning localization networks. The distances are obtained by measurement of time of arrival or time of group arrival respectively.
 
 % http://wwlln.net/publications/dowden.toga.article.pdf
 % http://www.lightning.nmt.edu/nmt_lms/descrip.html
-
 
 \subsection{Velocity measurement}
 
@@ -182,23 +179,13 @@ This method can localize only moving targets, but it is especially suitable for 
 
 \chapter{Experimental verification}
 
-The source \cite{LOFAR_lightning} suggests that the lightning pulses are strongly
-polarized where the polarization direction varies strongly for the individual peaks that form the
-total pulse. Combining the intensity and polarization information from many different antennas
-at different viewing angles on the discharge, the time structure, and direction of each
-step can be determined.  This forms the input for building a 4-D vector map of the
-discharge current showing for every step the position in space as well as the direction of the
-electric current and therefore giving detailed insight into the spatiotemporal development of the
-leaders.  The shape of each pulse is related to the time-dependence and the
-distance over which the current flows.
-
-
+The following section describes a real experimental work, which was carried out to verify the natural phenomena detection hypotheses described above. 
 
 \section{Meteor detection system}
 
 Meteors were selected primarily as the core natural objects testing phenomenon because they have unusual properties like high velocities and a wide range of RCS.
-Bolidozor uses multistatic forward scattering approach which allows an efficient use of the radar transmitter energy to maximize the information value collected from the meteor reflection.
-The network currently uses GRAVES \cite{GRAVES_radar} transmitter located in France, which transmits a continuous wave (CW) signal at a frequency of 143.05 MHz. A radiation of the transmitter is directed mainly to the south hemisphere, but due to the imperfections of its antenna system, the signal from meteor reflections can be observed in almost all European countries. Therefore the transmitter is suitable for receivers' network operations with the aim of meteor trail detection and the development of algorithms for the calculation of meteor trajectory. Unfortunately, the use of a distance measurement method is not possible because the transmitter signal is only partially modulated in space by steering the transmit azimuth in several discrete sectors, but the exact method and timing of steering radar beam is something we can not control. 
+Proposed Bolidozor network \cite{Bolidozor} uses multistatic forward scattering approach which allows an efficient use of the radar transmitter energy to maximize the information value collected from the meteor reflection.
+The network currently uses GRAVES \cite{GRAVES_radar} transmitter located in France, which transmits a continuous wave (CW) signal at a frequency of 143.05 MHz. A radiation of the transmitter is directed mainly to the south hemisphere, but due to the imperfections of its antenna system, the signal from meteor reflections can be observed in almost all European countries. Therefore the transmitter is suitable for receivers' network operations with the aim of meteor trail detection and the development of algorithms for the calculation of meteor trajectory. Unfortunately, the use of a distance measurement method is not possible because the transmitter signal is only partially modulated in space by steering the transmit azimuth in several discrete sectors, but the exact method and timing of steering radar beam we can not control. 
 
 \begin{figure}
  \begin{center}
@@ -326,19 +313,27 @@ Precise meteor trajectory estimation methods are investigated at the moment.  On
 
 \chapter{Future work}
 
-Although some meteor trajectory estimation algorithms are developed, the real precision of estimation is unknown because it needs a comparison with other trajectory estimation method. The best candidate will be probably optical measurement performed at the event which is detected by radio method and by optical observations. 
-Algorithmic complexity of meteor trajectory estimation could be possibly reduced by introducing some additional information other than velocity measurements.  The direction finding using phased antenna array is the most promising candidate for improving the measurement method because a distance measurement is not usable for meteors due to the lack of a globally available network of transmitters which signal allows distance measurement.  However, this localization method could be used for natural phenomena which produce a wide-band time limited noise-like signal such as lightning.
+Although some meteor trajectory estimation algorithms are developed, the real precision of estimation is unknown because it needs a comparison with other trajectory estimation method. The best candidate will be probably optical measurement performed at the event which is detected by radio method and by optical observations. A journal publication can be expected as the future result of this experiment. 
+
+Algorithmic complexity of meteor trajectory estimation could be possibly reduced by introducing some additional information other than velocity measurements.  The direction finding using phased antenna array is the most promising candidate for improving the measurement method because a distance measurement is not usable for meteors due to the lack of a globally available network of transmitters which allows direct distance measurement.  However, distance measurement localization method could be used in the same system for natural phenomena which produce a wide-band time limited noise-like signal such as lightning.
 
 \section{Expansion of used methods to other natural phenomena}
 
 The analysis mentioned above of state of the art methods and systems leads to a conclusion that the dissertation should focus on multi-methodical detection and analysis of natural phenomena which is already the most promising area for radio scientific research. 
+Already obtained experiences can be used for detection other natural phenomena like lightning strikes which could be extremely useful for work at the CRREAT project which needs precise localization of atmospheric events to achieve its scientific goals. A publishable result could be expected according to CRREAT project roadmap because measurement of lightning position and its parameters are needed for describe the dependence on some other phenomena.  
 
-Already obtained experiences can be used for detection other natural phenomena like lightning strikes which could be extremely useful for work at the CRREAT project which needs precise localization of atmospheric events to achieve its scientific goals. Measurement of lightning position and its parameters are needed for determine the dependence on some other phenomena.  
+
+\section{Proposed lightning detection system}
+The source \cite{LOFAR_lightning} suggests that the lightning pulses are strongly
+polarized where the polarization direction varies strongly for the individual peaks that form the
+total pulse. Combining the intensity and polarization information from many different antennas
+at different viewing angles on the discharge, the time structure, and direction of each charge movement can be determined.  This forms the input for building a 4-D vector map of the discharge current showing for every step the position in space as well as the direction of the
+electric current and therefore giving detailed insight into the spatiotemporal development of the
+lightning.  The shape of each pulse is related to the time-dependence and the distance over which the current flows.
+
+
 
 The CRREAT team will perform measurements of the atmospheric radiation and ionization events on satellites, aircraft, unmanned aerial vehicles, monitoring cars and ground stations. The CRREAT project will contribute to improvement of space weather models, air transport safety and global navigation systems reliability.
-
-\appendix
-\printindex
 
 \appendix
 
@@ -402,6 +397,12 @@ EDWARDS, W. N., BROWN, P. G., WERYK, R. J., et. al.
 Infrasonic Observations of Meteoroids: Preliminary Results from a Coordinated Optical-radar-infrasound Observing Campaign
 \emph{Earth Moon Planet} (2008) 102:221-229
 DOI 10.1007/s11038-007-9154-6
+
+\bibitem{Bolidozor}
+J. Kakona, M. Kakona, M. Poviser, et. al.
+Bolidozor radio meteor detection network
+\emph{roceedings of the IMC} (Mistelbach, 2015)
+
 
 \bibitem{IMPACT_sensor}
 C.T. Mata, J.G. Wilson,
