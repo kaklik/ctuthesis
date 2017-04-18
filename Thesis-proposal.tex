@@ -137,7 +137,7 @@ The general principle of meteor observing by the forward scattering of radio wav
 \subsubsection{Emissive objects}
 
 Another object detection principle relies on the fact that some phenomena are radio emissive targets itself. A typical example of such object is thunderstorm lightning. The lightning detection and localization stations work on VLF, LF, and VHF radio bands. Specific frequency and bandwidth selected depend on the use case of the system. The long range lighting surveillance systems use VLF frequencies. Essentially all methods that provide accurate information about the location,  polarity,  and peak current of return strokes
-in the cloud to ground, lightning operates in this frequency range. This sensor type usually extracts a basic signal feature like time of trigger and amplitude by preset of waveform discrimination criteria. Then the measured time and possible azimuth of received signal the event from multiple stations is processed in the central processing unit. The signal source is assumed to be point-like; therefore the spatial resolution of the best implementations of this technique are limited to sub-kilometer precision \cite{Lighting_locating}. 
+in the cloud to ground, lightning operates in this frequency range. This sensor type usually extracts a basic signal feature like time of trigger and amplitude by preset of waveform discrimination criteria \cite{VLF_TOGA}. Then the measured time and possible azimuth of received signal the event from multiple stations is processed in the central processing unit. The signal source is assumed to be point-like; therefore the spatial resolution of the best implementations of this technique are limited to sub-kilometer precision \cite{Lighting_locating}. 
 For more precise measurement a shorter wavelength is used the mostly from VHF band, where a combination of time of arrival and interferometry methods are used for reconstructing lighting channel \cite{NALMA_algorithms}, \cite{rocket_triggered} . 
 
 The newer detection systems are exclusively based on proprietary Vaisala  IMPACT \cite{IMPACT_sensor} or TLS200/TSS928/LS7002 lightning sensors. 
@@ -155,7 +155,6 @@ Radio direction finding is the oldest radio localization method.  It uses receiv
 Localizing a target by radio distance measurement usually uses the time-variable radio signal, rarely a signal attenuation model.  The target position is obtained by combining measured distances between the target and the receiver using geometrical trilateration or multilateration. The general limiting factor of this method is the requirement of a time-space variance of the radio signal which could not be achieved in every case. 
 In some cases, a pulse signal could be used for distance measurement. This technique is used in almost all existing lightning localization networks. The distances are obtained by measurement of time of arrival or time of group arrival respectively.
 
-% http://wwlln.net/publications/dowden.toga.article.pdf
 % http://www.lightning.nmt.edu/nmt_lms/descrip.html
 
 \subsection{Velocity measurement}
@@ -434,6 +433,10 @@ Correlated lightning mapping array and radar observations of the initial stages 
 Rison, W., R.J. Thomas, P.R. Krehbiel, T. Hamlin, and J. Harlin, A GPS-based Three-Dimensional Lightning Mapping System: Initial Observations in Central New Mexico
 \emph{Geophysical Research Letters, 26, 3573-3576, 1999}
 
+\bibitem{VLF_TOGA}
+Richard L. Dowden,  James B. Brundell, Craig J. Rodger, 
+VLF lightning location by time of group arrival (TOGA) at multiple sites
+\emph{ournal of Atmospheric and Solar-Terrestrial Physics 64 (2002) 817–830}
 
 
 \bibitem{4DLSS}
