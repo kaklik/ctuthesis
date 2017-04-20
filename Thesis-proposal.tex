@@ -153,9 +153,35 @@ Radio direction finding is the oldest radio localization method.  It uses receiv
 
 \subsection{Distance measurement}
 Localizing a target by radio distance measurement usually uses the time-variable radio signal, rarely a signal attenuation model.  The target position is obtained by combining measured distances between the target and the receiver using geometrical trilateration or multilateration. The general limiting factor of this method is the requirement of a time-space variance of the radio signal which could not be achieved in every case. 
-In some cases, a pulse signal could be used for distance measurement. This technique is used in almost all existing lightning localization networks. The distances are obtained by measurement of time of arrival or time of group arrival respectively.
+In some cases, a pulse signal could be used for distance measurement. This technique is used in almost all existing lightning localization networks. The distances are obtained by measurement of time of arrival (TOA) or time of group arrival (TOGA) respectively.
 
-% http://www.lightning.nmt.edu/nmt_lms/descrip.html
+To determine the 3-dimensional structure and temporal development of a lightning discharge the system utilizes the basic technique employed by the lightning mapping array that has been developed and operated at Kennedy Space Center by Carl Lennon and Launa Maier. The LMA uses time of arrival measurements to locate impulsive VHF radiation events during discharge. The figure \ref{fig:lihting_discharge} shows the VHF radiation for a portion of a normal lightning discharge. The sharp peaks in the Log RF plotted signal are produced by impulsive electrical breakdown events in small source regions \cite{NMLMA}. 
+
+\begin{figure}
+ \begin{center}
+ \includegraphics[width=\linewidth]{./img/lightning_waveform.png}
+ \caption{Hilbert envelope of a lighting discharge signal. Source: \cite{NMLMA} }
+  \label{fig:lihting_discharge} 
+ \end{center}
+\end{figure}
+
+If the time of arrival of the radiation from such an event is measured at four locations, the 3-dimensional position of the source region can be determined. If impulsive radiation occurs at location ($x$, $y$, $z$) and at time $t$, the time it is received at station i is 
+
+\begin{equation}
+t_i = t+ \frac{sqrt( (x-x_i)^2 + (y-y_i)^2 +(z-z_i)^2)}{c} \label{toa}
+\end{equation}
+
+where ($x_i$, $y_i$, $z_i$) is the position of station $i$. 
+
+\begin{figure}
+ \begin{center}
+ \includegraphics[width=\linewidth]{./img/toa_fig.png}
+ \caption{Illustration of measured distances in TOA methods. Source: \cite{NMLMA} }
+  \label{fig:TOA_localization} 
+ \end{center}
+\end{figure}
+
+By measuring the time of arrival of the radiation at least a four stations the four unknowns (x,y,z,t) can be determined. To provide for redundancy in the data (so a noise spike at one of the stations is not misidentified as a source of lightning) the system uses multiple receivers. The data from all stations is used to determine the location (and error in location) of the radiation source \cite{NMLMA}.
 
 \subsection{Velocity measurement}
 
