@@ -259,7 +259,7 @@ There also exist signal processing advantages, especially if we want to compute 
 Therefore we must combine information about one meteor event from multiple stations to obtain points in space corresponding to the meteor trajectory. We align the events according to time stamps. Therefore, a precise time synchronization between the stations is required. The exact required precision depends on the network geometry. However, if we want to work in 300 m distance resolution, which is typical for the current optical methods, we need the time precision on approximately the microseconds scale. Therefore, we needed to develop a high-performance receiver with specific parameters, in particular with a high quality of time synchronization. Tight time synchronization requirements between nodes increase the complexity of the receiver system. To simplify the development process we used MLAB open source electronic prototyping platform \cite{Bolidozor},\cite{MLAB}.
 
 As a result, a new type of radio meteor detection system is being built, based on a new idea of distributed scientific measurement systems. At the moment Bolidozor network produces a large volume of valuable radioastronomical data ready for further processing.  
-We currently have an extensive database of multi-station meteor reflections. Unfortunately, we have yet not reached a suitable network geometry to reliably obtain meteor position and trajectory by the known methods \cite{Doppler_method}. 
+We currently have an extensive database of multi-station meteor reflections. Unfortunately, we have yet not reached a suitable network geometry \cite{Positioning_geometry_Influence} to reliably obtain meteor position and trajectory by the known methods \cite{Doppler_method}. 
 To overcome the missing algorithm issue, a further evolution of Bolidozor network should be focused on the research of the new trajectory estimation algorithms. We are also working on the network extension outside of GRAVES radar range with the aim of extending its service area as well as increasing the station's density which should decrease data noise and improve the numerical stability of algorithms. 
 
 \subsection{VOR Transmitters as signal sources}
@@ -372,7 +372,7 @@ Already obtained experiences can be used for detection other natural phenomena l
 
 \section{Proposed lightning detection system}
 The source \cite{LOFAR_lightning} suggests that the lightning pulses are strongly polarized where the polarization direction varies strongly for the individual peaks that form the total pulse. Combining the intensity and polarization information from many different antennas at different viewing angles on the discharge, the time structure, and direction of each charge movement can be determined.  This forms the input for building a 4-D vector map of the discharge current showing for every step the position in space as well as the direction of the electric current and therefore giving detailed insight into the spatiotemporal development of the lightning.  The shape of each pulse is related to the time-dependence and the distance over which the current flows.
-This hypothesis verification is a primary challenge for future work because currently used TOA methods mentioned above allows computation of cloud of points only, but lightning should be described by vectors instead. There is a point where work already done on meteor detection should be used on lightning vectors computation and significantly improve the state of the art lighting location techniques. The result of this improvement should be used for investigation of ligtning and cosmic radiation relations which help to improve air traffic safety. 
+This hypothesis verification is a primary challenge for future work because currently used TOA methods mentioned above allows computation of cloud of points only, but lightning should be described by vectors instead. There is a point where work already done on meteor detection should be used on lightning vectors computation and significantly improve the state of the art lighting location techniques. The result of this improvement should be used for investigation of lightning and ionizing radiation relations which help to improve air traffic safety. 
 
 \appendix
 
@@ -599,6 +599,43 @@ SciPy: Open Source Scientific Tools for Python
 STEYAERT, C.,VERBELEN, F., et al.,
 Meteor Trajectory from Multiple Station Head Echo Doppler Observations
 \emph{WGN, the Journal of the IMO} 38:4 (2010)
+
+
+
+\bibitem{TDOA_DP}
+John D. Bard and Fredric M. Ham,
+Time Difference of Arrival Dilution of Precision and Applications,
+\emph{IEEE Transactions on Signal Processing, vol. 47, no. 2, pp.521-523, Feb. 1999}
+
+\bibitem{Hyperbolic_location}
+Y. T. Chan and K. C. Ho, 
+A simple and efficient estimator for hyperbolic location,
+\emph{IEEE Transactions on Signal Processing, vol. 42, pp. 1905–1915, Aug. 1994.}
+
+\bibitem{Hyperbolic_accuracy}
+Harry B. Lee, Accuracy Limitations of Hyperbolic Multilateration Systems,
+\emph{IEEE Transacations on Aerospace and Electronic System, vol. AES-11, no. 1, pp.16-29, Jan, 1975}
+
+\bibitem{GDOP}
+N. Levanon,
+Lowest GDOP in 2-D scenarios,
+\emph{IEE Proceedings on Radar, Sonar and Navigation, vol 147, no. 3, pp. 149-155, June 2000}
+
+\bibitem{GPS_GDOP}
+R.Yarlagadda, l.Ali, N.Al-Dhahir and J.Hershey, 
+GPS GDOP metric,
+\emph{IEE Proceedings on Radar, Sonar and Navigation, vol. 147, no. 5, pp.259-264, October 2000}
+
+\bibitem{Positioning_geometry_Influence}
+K. Bronk, J. Stefanski, 
+Bad Geometry Influence on Positioning Accuracy in Wireless Networks,
+\emph{in EUROCON 2007 The International Conference on “Computer as a Tool”, Warsaw, pp.1131- 1135}
+
+\bibitem{TOA_TDOA}
+Dong-Ho Shin and Tae-Kyung Sung,
+Comparisons of Error Characteristics between TOA and TDOA Positioning,
+\emph{IEEE Transactions on Aerospace and Elcctronic ystems, vol. 38, no. 1, pp.307-311, Jan. 2002}
+
 
 \end{thebibliography}
 
