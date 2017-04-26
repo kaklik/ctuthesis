@@ -151,13 +151,18 @@ If we want to estimate target position by radio signal reflected or transmitted 
 
 \subsection{Direction finding}
 
-Radio direction finding is the oldest radio localization method.  It uses receiver system sensitive to the angular orientation of the incoming signal.  The target is then localized by combining angular information from multiple receivers.  The direction sensitivity of a system was historically achieved by using a directional antenna. Nowadays the system usually uses antenna arrays consisting of antenna elements with a semi-omnidirectional radiating pattern. Then the received signal direction is numerically calculated from phase shift differences of the signal received by the antenna array. 
+Radio direction finding is the oldest radio localization method.  It uses receiver system sensitive to the angular orientation of the incoming signal.  The target is then localized by combining angular information from multiple receivers.  The direction sensitivity of a system was historically achieved by using a directional antenna. Nowadays the system usually uses antenna arrays consisting of antenna elements with a semi-omnidirectional radiating pattern. Then the received signal direction is numerically calculated from phase shift differences of the signal received by the antenna array. Several algorithms exist to calculating target position from the angle of arrival measurement (AOA) the one of latest is Robust Weighted Intersection Algorithm from the source \cite{RWIAOA}. The AOA value can be theoretically calculated from the simplest two element antenna array according to equation \ref{AOA_Angle}. Unfortunately, the calculated $\Theta$ is ambiguous AOA. Therefore more complex antenna arrays are used for serious measurements \cite{Interferometry_AOA}.  
+
+\begin{equation}
+ \Theta = \arcsin \left( \frac{\Delta \phi \lambda}{2 \pi  d} \right)
+ \label{AOA_Angle}
+\end{equation}
 
 \subsection{Distance measurement}
 Localizing a target by radio distance measurement usually uses the time-variable radio signal, rarely a signal attenuation model.  The target position is obtained by combining measured distances between the target and the receiver using geometrical trilateration or multilateration. The general limiting factor of this method is the requirement of a time-space variance of the radio signal which could not be achieved in every case. 
 In some cases, a pulse signal could be used for distance measurement. This technique is used in almost all existing lightning localization networks. The distances are obtained by measurement of time of arrival (TOA) or time of group arrival (TOGA) respectively.
 
-To determine the 3-dimensional structure and temporal development of a lightning discharge the most systems utilizes the basic technique employed by the lightning mapping array (LMA) that has been developed and operated at Kennedy Space Center by Carl Lennon and Launa Maier. The LMA uses time of arrival measurements to locate impulsive VHF radiation events during discharge. The figure \ref{fig:lihting_discharge} shows the VHF signal for a portion of a normal lightning discharge. The sharp peaks in the plotted signal are produced by impulsive electrical breakdown events in small source regions \cite{NMLMA}. 
+To determine the 3-dimensional structure and temporal development of a lightning discharge the most systems utilizes the basic technique employed by the lightning mapping array (LMA) that has been developed and operated at Kennedy Space Center by Carl Lennon and Launa Maier. The LMA uses time of arrival measurements to locate impulsive VHF radiation events during discharge. The figure \ref{fig:lihting_discharge} shows the VHF signal for a portion of a normal lightning discharge. The sharp peaks in the plotted signal are produced by impulsive electrical breakdown events in small source regions \cite{NMLMA}. The detection method of the transient peak in the band-limited signal in the presence of noise directly affect the measurement quality \cite{Transient_peak}. 
 
 \begin{figure}
  \begin{center}
@@ -372,7 +377,15 @@ Already obtained experiences can be used for detection other natural phenomena l
 
 \section{Proposed lightning detection system}
 The source \cite{LOFAR_lightning} suggests that the lightning pulses are strongly polarized where the polarization direction varies strongly for the individual peaks that form the total pulse. Combining the intensity and polarization information from many different antennas at different viewing angles on the discharge, the time structure, and direction of each charge movement can be determined.  This forms the input for building a 4-D vector map of the discharge current showing for every step the position in space as well as the direction of the electric current and therefore giving detailed insight into the spatiotemporal development of the lightning.  The shape of each pulse is related to the time-dependence and the distance over which the current flows.
-This hypothesis verification is a primary challenge for future work because currently used TOA methods mentioned above allows computation of cloud of points only, but lightning should be described by vectors instead. There is a point where work already done on meteor detection should be used on lightning vectors computation and significantly improve the state of the art lighting location techniques. The result of this improvement should be used for investigation of lightning and ionizing radiation relations which help to improve air traffic safety. 
+This hypothesis verification is a primary challenge for future work because currently used TOA methods mentioned above allows computation of cloud of points only, but lightning should be described by vectors instead. There is a point where work already done on meteor detection should be used on lightning vectors computation and significantly improve the state of the art lighting location techniques by following steps: 
+
+\begin{itemize}
+\item Optimal detection and signal processing algorithm research.
+\item A receiver parameters optimization like signal and antenna bandwidth optimization for reaching the best possible system precision.
+\item Station deployment optimization
+\end{itemize}
+
+ The result of this improvement should be used for investigation of lightning and ionizing radiation relations which help to improve air traffic safety. 
 
 \appendix
 
@@ -472,6 +485,11 @@ Correlated lightning mapping array and radar observations of the initial stages 
 \bibitem{NMLMA}
 Rison, W., R.J. Thomas, P.R. Krehbiel, T. Hamlin, and J. Harlin, A GPS-based Three-Dimensional Lightning Mapping System: Initial Observations in Central New Mexico
 \emph{Geophysical Research Letters, 26, 3573-3576, 1999}
+
+\bibitem{Transient_peak}
+C. E. Livingstone,
+An instrument for “real-time” measurement of the decaying edge of transient signals,
+\emph{IEEE Transactions on Instrumentation and Measurement, vol. IM-25, no. 2, pp. 120-125, June 1976.} doi: 10.1109/TIM.1976.6312325
 
 \bibitem{VLF_TOGA}
 Richard L. Dowden,  James B. Brundell, Craig J. Rodger, 
@@ -600,7 +618,15 @@ STEYAERT, C.,VERBELEN, F., et al.,
 Meteor Trajectory from Multiple Station Head Echo Doppler Observations
 \emph{WGN, the Journal of the IMO} 38:4 (2010)
 
+\bibitem{RWIAOA}
+F. Kong, J. Wang, N. Zheng, G. Chen and J. Zheng,
+A robust weighted intersection algorithm for target localization using AOA measurements,
+\emph{2016 IEEE Advanced Information Management, Communicates, Electronic and Automation Control Conference (IMCEC), Xi'an,}  2016, pp. 23-28. doi: 10.1109/IMCEC.2016.7867106
 
+\bibitem{Interferometry_AOA}
+F. Kong, J. Wang, N. Zheng, G. Chen and J. Zheng, 
+A robust weighted intersection algorithm for target localization using AOA measurements,
+\emph{2016 IEEE Advanced Information Management, Communicates, Electronic and Automation Control Conference (IMCEC), Xi'an,} 2016, pp. 23-28. doi: 10.1109/IMCEC.2016.7867106
 
 \bibitem{TDOA_DP}
 John D. Bard and Fredric M. Ham,
