@@ -100,8 +100,8 @@ Therefore a research which helps quantify, predict and avoid these hazards shoul
 Unfortunately, hazardous conditions can have multiple different forms with different suitable detection methods which should often be combined to produce a desirable result, but at least for some cases, a radar sensing system should be a suitable option. 
 The parameters of that detection system should be universal as possible and assume possible combination with other detection methods. 
 However, in opposite to that the common technique, for natural phenomena detection is building an experiment-specific radar system. 
-This approach is shown in scientific papers, which describe state of the art radio detection methods of natural phenomena. For example, a lighting detection systems like \cite{NMLMA} uses specifically designed direction finding and time measurement receiver system.  Another system is intended to be a meteor scatter receiver on the specific frequency and position \cite{BRAMS}. 
-By combining parameters required by these and possibly other systems, a universal receiver useful for multi-experiment natural object detection could be built. The source \cite{LOFAR} describes the first and extremely expensive solution for this problem. The LOFAR station design and requirements are prohibitive for widespread scientific use, but a use of new techniques could scale down the station complexity and allows a small scale high-quality radio experiments which should help to improve the knowledge about atmospheric processes. Then the proper methods and algorithm should be developed to discovers evidence of hazardous conditions and suggest appropriate steps to improve safety. 
+This approach is shown in scientific papers, which describe state of the art radio detection methods of natural phenomena. For example, a lightning detection systems like \cite{NMLMA} uses specifically designed direction finding and time measurement receiver system.  Another system is intended to be a meteor scatter receiver on the specific frequency and position \cite{BRAMS}. 
+By combining parameters required by these and possibly other systems, a universal receiver useful for multi-experiment natural object detection could be built. The source \cite{LOFAR} describes the first and extremely expensive solution for this problem. The LOFAR station design and requirements are prohibitive for widespread scientific use, but a use of new techniques could scale down the station complexity and allows a small scale high-quality radio experiments which should help to improve the knowledge about atmospheric processes. Then the proper methods and algorithm should be developed to discover evidence of hazardous conditions and suggest appropriate steps to improve safety. 
 
 \section{Main object parameters}
 
@@ -109,7 +109,7 @@ The radar cross section (RCS; describing the ability to reflect radio waves), ob
 
 \subsection{Artificial airspace targets}
 
-A large group of possible radio reflective targets includes classical airspace objects like airplanes, unmanned aerial vehicles or satellites. These classical objects are detectable and localizable with already existing radar systems. Parameters like RCS and trajectory or velocity of these object are usually known from other sources simultaneously, and therefore this object category is usable for system parameters verification. Otherwise, these objects are typically treated as noise in scientific measurements. 
+A large group of possible radio reflective targets includes classical airspace objects like airplanes, unmanned aerial vehicles or satellites. These classical objects are detectable and localizable with already existing radar systems. Parameters like RCS and trajectory or velocity of these object are usually known from other sources simultaneously, and therefore this object category is usable for system parameters' verification. Otherwise, these objects are typically treated as noise in scientific measurements. 
 
 \subsection{Natural radio-detectable objects}
 
@@ -123,11 +123,11 @@ Meteors, the atmospheric products of meteoroids traveling in space, are studied 
 
 However, all mentioned  \cite{skiymet},\cite{CMOR_radar}  monostatic or bistatic backscatter radars have little detection coverage, usually limited to the radar antenna field of view. Therefore these radar types observe only several spatially limited areas of the Earth's atmosphere.
 Besides the backscatter scientific radar systems, a multistatic forward scatter radio meteor detection networks have evolved \cite{BRAMS},\cite{RETRAM}.
-The general principle of meteor observing by the forward scattering of radio waves off their trails is illustrated by the figure \ref{fig:forward_scattering}. A radio receiver with operating frequency range of 30-200MHz located at a proper distance (about 500-2000 km) from a transmitter. A curvature of the Earth or terrain features over this distance ensures there is no possibility of direct radio visibility. When a meteoroid enters the atmosphere, its meteor trail may reflect the radio waves emitted by the transmitter to the receiver. The signal can be received until the ionized meteor trail recombines. Reflections can last from tenths of a second to a few minutes, depending on used radio frequency and ionization density. The received signal characteristics are directly related to physical parameters of the meteoric event \cite{forward_scatter}.
+The general principle of meteor observing by the forward scattering of radio waves off their trails is illustrated by the figure \ref{fig:forward_scattering}. A radio receiver with operating frequency range of 30-200MHz is located at a proper distance (about 500-2000 km) from a transmitter. A curvature of the Earth or terrain features over this distance ensures there is no possibility of direct radio visibility. When a meteoroid enters the atmosphere, its meteor trail may reflect the radio waves emitted by the transmitter to the receiver. The signal can be received until the ionized meteor trail recombines. Reflections can last from tenths of a second to a few minutes, depending on the used radio frequency and ionization density. The received signal characteristics are directly related to physical parameters of the meteoric event \cite{forward_scatter}.
 
 These forward scattering multistatic systems have a great advantage of a significant detection coverage. 
-The main improvement of coverage which the forward scattering method brings originate in the fact that one or multiple radio-frequency transmitters can be cooperatively used simultaneously over the large area. Additionally, forward scattering geometry decreases the angle of reflection, therefore, increasing the available illuminating frequency of the transmitter. Unfortunately, the current spread of this technology is not sufficient to entirely cover the meteor flux in the Earth's atmosphere.
- However, the benefits of using this radio method are obvious - radio meteor detection capability is not dependent on the current weather and can work even during the daylight or nights with full Moon \cite{daylight_shover}.
+The main improvement of coverage, which the forward scattering method brings, originate in the fact that one or multiple radio-frequency transmitters can be cooperatively handled simultaneously over the large area. Additionally, forward scattering geometry decreases the angle of reflection, therefore increased frequency of the transmitter can be used. Unfortunately, the current spread of this technology is not sufficient to entirely cover the meteor flux in the Earth's atmosphere.
+However, the benefits of using this radio method are obvious - radio meteor detection capability is not dependent on the current weather and can work even during the daylight or nights with full Moon \cite{daylight_shover}.
 
 \begin{figure}
  \begin{center}
@@ -139,15 +139,15 @@ The main improvement of coverage which the forward scattering method brings orig
 
 \subsubsection{Emissive objects}
 
-Another object detection principle relies on the fact that some phenomena are radio emissive targets itself. A typical example of such object is thunderstorm lightning. The lightning detection and localization stations work on VLF, LF, and VHF radio bands. Specific frequency and bandwidth selected depend on the use case of the system. The long range lighting surveillance systems use VLF frequencies. Essentially all methods that provide accurate information about the location,  polarity,  and peak current of return strokes in the cloud to ground, lightning operates in this frequency range. This sensor type usually extracts a basic signal feature like time of trigger and amplitude by preset of waveform discrimination criteria \cite{VLF_TOGA}. Then the measured time and possible azimuth of received signal of the event from multiple stations is processed in the central processing unit. The signal source is assumed to be point-like; therefore the spatial resolution of the best implementations of this technique are limited to sub-kilometer precision \cite{Lighting_locating}. 
-For more precise measurement a shorter wavelength is used the mostly from VHF band, where a combination of time of arrival and interferometry methods are used for reconstructing lighting channel \cite{NALMA_algorithms}, \cite{rocket_triggered} . 
+Another object detection principle relies on the fact that some phenomena are radio emissive targets itself. A typical example of such object is thunderstorm lightning. The lightning detection and localization stations work on VLF, LF, and VHF radio bands. Selected frequency and bandwidth depend on the application of the system. The long range lightning surveillance systems use VLF frequencies. Essentially all methods that provide accurate information about the location,  polarity,  and peak current of return strokes in the cloud to ground, lightning operates in this frequency range. This sensor type usually extracts a basic signal feature like time of trigger and amplitude by preset of waveform discrimination criteria \cite{VLF_TOGA}. Then the measured time and possible azimuth of received signal of the event from multiple stations is processed in the central processing unit. The signal source is assumed to be point-like; therefore the spatial resolution of the best implementations of this technique are limited to sub-kilometer precision \cite{Lightning_locating}. 
+For more precise measurement a shorter wavelength from VHF band is used, where a combination of time of arrival and interferometry methods are preferred for reconstructing lightning channel \cite{NALMA_algorithms}, \cite{rocket_triggered}. 
 
 The newer detection systems are exclusively based on proprietary Vaisala  IMPACT \cite{IMPACT_sensor} or TLS200/TSS928/LS7002 lightning sensors. 
-Furthermore commercial off the shelf products are preferred systems for long-term sustainability \cite{4DLSS}. Unfortunately, these systems are intended to be used in meteorological measurements and insured events solving. Therefore they are not suitable for research of atmospheric phenomena. The only one exception to this trend I have found in the literature is lighting research which takes place in LOFAR project \cite{LOFAR_lightning}, \cite{LOFAR_lightning2}.  
+Furthermore commercial off the shelf products are preferred systems for long-term sustainability \cite{4DLSS}. Unfortunately, these systems are intended to be used in meteorological measurements and insured events solving. Therefore they are not suitable for research of atmospheric phenomena. The only one exception to this trend I have found in the literature is lightning research which takes place in LOFAR project \cite{LOFAR_lightning}, \cite{LOFAR_lightning2}.  
 
 \section{Common position determination methods}
 
-If we want to estimate target position by radio signal reflected or transmitted by the target, we have only a small number of signal features which we could use to obtain the information about target coordinates. The best method to be used for determination of target position depends on the target type, the precision of measurement required and intended application. In most cases for an unknown flying object, we need to implement and combine several of the following general methods. 
+If we want to estimate target position by radio signal reflected or transmitted by the target, we have only a small number of signal features which we could use to obtain the information about target coordinates. The best method to be used for determination of target position depends on the target type, the measurement precision required and intended application. In most cases for an unknown flying object, we need to implement and combine several of the following general methods. 
 
 \subsection{Direction finding}
 
@@ -167,7 +167,7 @@ To determine the 3-dimensional structure and temporal development of a lightning
 \begin{figure}
  \begin{center}
  \includegraphics[width=\linewidth]{./img/lightning_waveform.png}
- \caption{Hilbert envelope of a lighting discharge signal. Source: \cite{NMLMA} }
+ \caption{Hilbert envelope of a lightning discharge signal. Source: \cite{NMLMA} }
   \label{fig:lihting_discharge} 
  \end{center}
 \end{figure}
@@ -333,6 +333,7 @@ Another antenna type was proposed to overcome the issues of the previous antenna
  \end{center}
 \end{figure*}
 
+
 \begin{figure*}
  \begin{center}
  \includegraphics[width=90mm ]{./img/SC_QHA_rp_horizontal.png} 
@@ -341,6 +342,9 @@ Another antenna type was proposed to overcome the issues of the previous antenna
   \label{fig:QHA_antenna_RP} 
  \end{center}
 \end{figure*}
+
+
+
 
 \section{Meteor trajectory determination}
 
@@ -373,7 +377,7 @@ Already obtained experiences can be used for detection other natural phenomena l
 
 \section{Proposed lightning detection system}
 The source \cite{LOFAR_lightning} suggests that the lightning pulses are strongly polarized where the polarization direction varies strongly for the individual peaks that form the total pulse. Combining the intensity and polarization information from many different antennas at different viewing angles on the discharge, the time structure, and direction of each charge movement can be determined.  This forms the input for building a 4-D vector map of the discharge current showing for every step the position in space as well as the direction of the electric current and therefore giving detailed insight into the spatiotemporal development of the lightning.  The shape of each pulse is related to the time-dependence and the distance over which the current flows.
-This hypothesis verification is a primary challenge for future work because currently used TOA methods mentioned above allows computation of cloud of points only, but lightning should be described by vectors instead. There is a point where work already done on meteor detection should be used on lightning vectors computation and significantly improve the state of the art lighting location techniques by following steps: 
+This hypothesis verification is a primary challenge for future work because currently used TOA methods mentioned above allows computation of cloud of points only, but lightning should be described by vectors instead. There is a point where work already done on meteor detection should be used on lightning vectors computation and significantly improve the state of the art lightning location techniques by following steps: 
 
 \begin{itemize}
 \item Optimal detection and signal processing algorithm research.
@@ -494,7 +498,7 @@ Bolidozor radio meteor detection network
 \bibitem{IMPACT_sensor}
 C.T. Mata, J.G. Wilson,
 FUTURE EXPANSION OF THE LIGHTNING SURVEILLANCE SYSTEM AT THE KENNEDY SPACE CENTER AND THE CAPE CANAVERAL AIR FORCE STATION, FLORIDA, USA  
-\emph{22nd International Lighting Detection conference} (2012) 
+\emph{22nd International Lightning Detection conference} (2012) 
 
 \bibitem{LOFAR_lightning}
 O. Scholten, Ad van den Berg,
@@ -531,9 +535,9 @@ VLF lightning location by time of group arrival (TOGA) at multiple sites
 \bibitem{4DLSS}
 William P. Roeder, Jon M. Saul,
 Four Dimensional Lightning Surveillance System:  Status and Plans  
-\emph{22nd International Lighting Detection conference} (2012)
+\emph{22nd International Lightning Detection conference} (2012)
 
-\bibitem{Lighting_locating}
+\bibitem{Lightning_locating}
 Kenneth L. Cummins, Martin J. Murphy,
 An Overview of Lightning Locating Systems: History, Techniques, and Uses, With an In-depth Look at 
 the U.S. NLDN \emph{IEEE Transaction on Electromagnetic Compat
