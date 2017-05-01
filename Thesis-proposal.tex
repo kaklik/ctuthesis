@@ -323,7 +323,7 @@ Patch antenna was initially examined due to an expectation of a simple construct
 
 \subsection{Short-circuited quadrifilar helix}
 
-Another antenna type was proposed to overcome the issues of the previous antenna design experiment.  Short-circuited quadrifilar helix (SC-QHA) is a variant of a well-known self-phased quadrifilar helix antenna (SP-QHA). However, unlike the SP-QHA type, the  SC-QHA has a narrower bandwidth which depends primarily on a bandwidth of a phasing network. Therefore the antenna could be more efficient for narrow band signals like meteor reflections.  The antenna was numerically modeled in NEC2++ software. See figures \ref{fig:QHA_antenna_RP}, which shows the expected radiation patterns of the antenna.  The prototype of the antenna was constructed based on the computer model, but a phasing network implementation becomes a challenging problem for practical usage of the SC-QHA antenna. 
+Another antenna type was proposed \cite{Bolidozor_QHA} to overcome the issues of the previous antenna design experiment.  Short-circuited quadrifilar helix (SC-QHA) is a variant of a well-known self-phased quadrifilar helix antenna (SP-QHA). However, unlike the SP-QHA type, the  SC-QHA has a narrower bandwidth which depends primarily on a bandwidth of a phasing network. Therefore the antenna could be more efficient for narrow band signals like meteor reflections.  The antenna was numerically modeled in NEC2++ software. See figures \ref{fig:QHA_antenna_RP}, which shows the expected radiation patterns of the antenna.  The prototype of the antenna was constructed based on the computer model, but a phasing network implementation becomes a challenging problem for practical usage of the SC-QHA antenna. 
 
 \begin{figure*}
  \begin{center}
@@ -366,26 +366,29 @@ Precise meteor trajectory estimation methods are investigated at the moment.  On
 
 \chapter{Future work}
 
-Although some meteor trajectory estimation algorithms are developed, the real precision of estimation is unknown because it needs a comparison with other trajectory estimation method. The best candidate will be probably optical measurement performed at the event which is detected by radio method and by optical observations. A journal publication can be expected as the future result of this experiment. 
+Although some meteor trajectory estimation algorithms are developed, the real precision of estimation is unknown because it needs a comparison with other trajectory estimation method\cite{Bolidozor_trajectory}. The best candidate of reference data will be probably optical measurement of the event which is detected by radio method. A journal publication can be expected as the future result of this experiment. 
 
-Algorithmic complexity of meteor trajectory estimation could be possibly reduced by introducing some additional information other than velocity measurements.  The direction finding using phased antenna array is the most promising candidate for improving the measurement method because a distance measurement is not usable for meteors due to the lack of a globally available network of transmitters which allows direct distance measurement.  However, distance measurement localization method could be used in the same system for natural phenomena which produce a wide-band time limited noise-like signal such as lightning.
+Algorithmic complexity of meteor trajectory estimation could be possibly reduced by introducing some additional information other than multi-static velocity measurements.  The direction finding using phased antenna array is the most promising solution for improving the data quality because a distance measurement is not usable for meteors due to the lack of a globally available network of transmitters which allows direct distance measurement.  However, distance measurement localization method could be used in the same system for natural phenomena which produce a wide-band time limited noise-like signal such as lightning.
 
 \section{Expansion of used methods to other natural phenomena}
 
-The analysis mentioned above of state of the art methods and systems leads to a conclusion that the dissertation should focus on multi-methodical detection and analysis of natural phenomena which is already the most promising area for radio scientific research. 
-Already obtained experiences can be used for detection other natural phenomena like lightning strikes which could be extremely useful for work at the recently established CRREAT project which needs precise localization of atmospheric events to achieve its scientific goals. A publishable result could be expected according to CRREAT project roadmap because measurement of lightning position and its parameters are needed for describe the dependence on some other phenomena.  The CRREAT team will perform measurements of the atmospheric radiation and ionization events on satellites, aircraft, unmanned aerial vehicles, monitoring cars and ground stations. The CRREAT project will contribute to improvement of space weather models, air transport safety and global navigation systems reliability.
+The analysis mentioned above of state of the art methods and systems leads to a conclusion that the dissertation should focus on multi-methodical detection and analysis of natural phenomena. 
+Already obtained experiences can be used for detection other natural phenomena like lightning strikes which could be extremely useful for work at the recently established CRREAT project which needs precise localization of atmospheric events to achieve its scientific goals. A publishable result could be expected according to CRREAT project roadmap because measurement of lightning position and its parameters are needed for describing the dependence on some other phenomena.  The CRREAT team will perform measurements of the atmospheric radiation and ionization events on satellites, aircraft, unmanned aerial vehicles, monitoring cars and ground stations. The CRREAT project will contribute to improvement of space weather models, air transport safety and global navigation systems reliability.
 
 \section{Proposed lightning detection system}
 The source \cite{LOFAR_lightning} suggests that the lightning pulses are strongly polarized where the polarization direction varies strongly for the individual peaks that form the total pulse. Combining the intensity and polarization information from many different antennas at different viewing angles on the discharge, the time structure, and direction of each charge movement can be determined.  This forms the input for building a 4-D vector map of the discharge current showing for every step the position in space as well as the direction of the electric current and therefore giving detailed insight into the spatiotemporal development of the lightning.  The shape of each pulse is related to the time-dependence and the distance over which the current flows.
-This hypothesis verification is a primary challenge for future work because currently used TOA methods mentioned above allows computation of cloud of points only, but lightning should be described by vectors instead. There is a point where work already done on meteor detection should be used on lightning vectors computation and significantly improve the state of the art lightning location techniques by following steps: 
+This hypothesis verification is a primary challenge for future work because currently used TOA methods mentioned above allows computation of cloud of points only, but lightning should be described by vectors instead. There is a point where already done work on meteor detection should be used for lightning elementary vectors computation and significantly improve the state of the art lightning location techniques in following points: 
 
 \begin{itemize}
 \item Optimal detection and signal processing algorithm research.
-\item A receiver parameters optimization like signal and antenna bandwidth optimization for reaching the best possible system precision.
+\item An  SDR receiver configuration optimization for minimizing required data transfers.
 \item Station deployment optimization
 \end{itemize}
 
- The result of this improvement should be used for investigation of lightning and ionizing radiation relations which help to improve air traffic safety. 
+These points should be fulfilled iteratively by the combination of experimental and theoretical work.  Firstly a test data should be captured by at least three multichannel SDR stations distributed symmetrically as possible around a thunderstorm. The captured data should be used to determine signal characteristics usable to improve the data processing techniques beyond a TOA point localization method e.g. slightly different pulse spectra on each station. 
+Then the selected signal properties should be numerically modeled to verify a proper understanding of physical processes in the lightning signal generation. After that, a receiver network experiment configuration could be optimized to handle and process lightning signal more effectively. 
+
+The resulting data sets should be used for investigation of lightning and ionizing radiation relations which help to improve air traffic safety. 
 
 \appendix
 
@@ -656,6 +659,16 @@ GPS GDOP metric,
 K. Bronk, J. Stefanski, 
 Bad Geometry Influence on Positioning Accuracy in Wireless Networks,
 \emph{in EUROCON 2007 The International Conference on “Computer as a Tool”, Warsaw, pp.1131- 1135}
+
+\bibitem{Bolidozor_trajectory}
+J. Kakona,
+Meteor trajectory estimation from radio meteor observations
+\emph{Proceedings of the IMC} (Egmond, 2016)
+
+\bibitem{Bolidozor_QHA}
+J. Kakona,
+Hemispherical radiating pattern antenna design for radio meteor observation
+\emph{Proceedings of the IMC} (Egmond, 2016)
 
 \bibitem{TOA_TDOA}
 Dong-Ho Shin and Tae-Kyung Sung,
