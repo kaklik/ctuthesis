@@ -317,7 +317,7 @@ As could be seen from resulting histogram, the power of expected received signal
 
 A highly directional pattern antenna is usually used for radio meteor observations, but these types of antennas became impractical in cases where we have multiple transmitters such as VOR beacons, spread around a reception station. In that situation, the hemispherical sensitivity and circular polarity uniformity of the antenna are more valuable than the peak directional antenna gain. A hemispherical radiation pattern antenna should be the best solution.  The symmetry of the radiation pattern of such antenna allows easy construction of antenna arrays which could be used for angular measurement of received signals.
 
-\subsection{Patch Antenna Design }
+\subsection{Patch antenna}
 
 Patch antenna was initially examined due to an expectation of a simple construction and easy manufacturing. The antenna was experimentally constructed from wire mesh with a square grid. This grid was chosen as a compromise between antenna quality (surface conductivity)  and the possibility of icing on antenna’s surfaces. Real prototype of the antenna was made according to the computer model. Unfortunately, after the antenna’s construction and verification, it was found that the antenna is very sensitive to deformation of patch base element and for a position of the central elevated element. Additionally, the central part must be a precise square to achieve a circular polarization. 
 
@@ -368,7 +368,7 @@ Precise meteor trajectory estimation methods are investigated at the moment.  On
 
 Although some meteor trajectory estimation algorithms are developed, the real precision of estimation is unknown because it needs a comparison with other trajectory estimation method\cite{Bolidozor_trajectory}. The best candidate of reference data will be probably optical measurement of the event which is detected by radio method. A journal publication can be expected as the future result of this experiment. 
 
-Algorithmic complexity of meteor trajectory estimation could be possibly reduced by introducing some additional information other than multi-static velocity measurements.  The direction finding using phased antenna array is the most promising solution for improving the data quality because a distance measurement is not usable for meteors due to the lack of a globally available network of transmitters which allows direct distance measurement.  However, distance measurement localization method could be used in the same system for natural phenomena which produce a wide-band time limited noise-like signal such as lightning.
+Algorithmic complexity of meteor trajectory estimation could be possibly reduced by introducing some additional information other than multi-static velocity measurements.  The direction finding using phased antenna array is the most promising solution for improving the data information quality because a distance measurement is not usable for meteors due to the lack of a globally available network of transmitters which allows direct distance measurement.  However, distance measurement localization method could be used in the same system for natural phenomena which produce a wide-band time limited noise-like signal such as lightning.
 
 \section{Expansion of used methods to other natural phenomena}
 
@@ -380,13 +380,14 @@ The source \cite{LOFAR_lightning} suggests that the lightning pulses are strongl
 This hypothesis verification is a primary challenge for future work because currently used TOA methods mentioned above allows computation of cloud of points only, but lightning should be described by vectors instead. There is a point where already done work on meteor detection should be used for lightning elementary vectors computation and significantly improve the state of the art lightning location techniques in following points: 
 
 \begin{itemize}
-\item Optimal detection and signal processing algorithm research.
-\item An  SDR receiver configuration optimization for minimizing required data transfers.
+\item Optimal detection and signal processing algorithm to minimalize processing power.
+\item An  SDR receiver configuration optimized to minimalize required data transfers.
 \item Station deployment optimization
+\item Improved data quality to allow interdisciplinary evaluation.
 \end{itemize}
 
-These points should be fulfilled iteratively by the combination of experimental and theoretical work.  Firstly a test data should be captured by at least three multichannel SDR stations distributed symmetrically as possible around a thunderstorm. The captured data should be used to determine signal characteristics usable to improve the data processing techniques beyond a TOA point localization method e.g. slightly different pulse spectra on each station. 
-Then the selected signal properties should be numerically modeled to verify a proper understanding of physical processes in the lightning signal generation. After that, a receiver network experiment configuration could be optimized to handle and process lightning signal more effectively. 
+These points should be fulfilled iteratively by the combination of experimental and theoretical work.  Firstly a test data should be captured by at least three multichannel SDR stations distributed symmetrically as possible around a thunderstorm. The captured data should be used to determine signal characteristics usable to improve the data processing techniques beyond a TOA point localization method e.g. slightly different pulse spectrum received at each station could be expected. 
+Then the selected signal properties should be numerically modeled to verify a proper understanding of physical processes in the lightning signal generation. After that, a receiver network experiment configuration could be optimized to detect and process lightning signal more efficiently. 
 
 The resulting data sets should be used for investigation of lightning and ionizing radiation relations which help to improve air traffic safety. 
 
